@@ -19,7 +19,7 @@ const cormorant = Cormorant_Garamond({
 
 export const metadata: Metadata = {
   title: "Laila El Attar — Portfolio",
-  description: "CS & Media graduate. I design and build data-driven products.",
+  description: "AI Operations Specialist at Opendoor. I build reliable AI workflows, Python and Snowflake detection systems, and data-driven products.",
 }
 
 export default function RootLayout({

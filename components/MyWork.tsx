@@ -17,7 +17,7 @@ const projects = [
   {
     id: 1,
     title: "Lens Calculator — IO Industries",
-    description: "A live tool that eliminates lens-camera compatibility guesswork, resolving 30%+ of support inquiries",
+    description: "A live lens compatibility calculator used by hundreds of customers each month, addressing a frustration cited in 30%+ of support inquiries.",
     tags: ["React.js", "Node.js"],
     image: "/IOI.png",
     link: "https://www.ioindustries.com/calculator/cameras",

@@ -6,9 +6,21 @@ import { useState, useEffect, useRef } from "react"
 
 const workExperience = [
   {
+    id: 6,
+    company: "Opendoor",
+    date: "June 2026 - Present",
+    title: "AI Operations Specialist",
+    bullets: [
+      "Own analytics and operations for utility activation across acquired homes, auditing AI-generated outputs against source data to catch discrepancies.",
+      "Built a Python and Snowflake detection system to flag fall-through contracts before they stall renovations, partnering with operations and engineering to debug edge cases and define risk.",
+      "Built a reliable utility provider dataset using Parallel AI, data cleaning, and SQL-based research.",
+      "Shipped a daily automated catch net using Gumloop and MCP-connected Claude to surface missed utility turn-on requests in Slack and reduce manual monitoring.",
+    ],
+  },
+  {
     id: 1,
     company: "Western Technology Services - Western University",
-    date: "Sept. 2025 - April 2025",
+    date: "Sept. 2025 - April 2026",
     title: "Tech Lead & Digital Media Designer",
     bullets: ["Designed accessible, audience-tailored digital learning assets using Adobe Creative Suite and structured course content on Brightspace LMS, shaping the learning experience for hundreds of students"],
   },
@@ -16,7 +28,7 @@ const workExperience = [
     id: 2,
     company: "Hydro One",
     date: "Jan. 2025 - August 2025",
-    title: "Customer Experience Analyst Intern",
+    title: "Customer Experience Analyst",
     bullets: ["Analyzed 30,000+ customer records to surface UX friction points in the myEnergy Rewards program, translating findings into actionable recommendations and Power BI dashboards that directly informed roadmap decisions"],
   },
   {
@@ -24,7 +36,7 @@ const workExperience = [
     company: "IO Industries",
     date: "May 2024 - Dec. 2024",
     title: "Software Engineer Intern",
-    bullets: ["Built tools using C++ and JavaScript (React.js, Node.js) to resolved top customer pain points, serving hundreds of users monthly"],
+    bullets: ["Built a lens compatibility calculator using React.js and Node.js to address a customer frustration cited in 30%+ of support inquiries, serving hundreds of customers monthly"],
   },
   {
     id: 4,

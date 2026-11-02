@@ -1,5 +1,5 @@
 "use client"
-import { Users, Laptop, Building2, Rocket, HelpCircle } from "lucide-react"
+import { Users, Laptop, Rocket } from "lucide-react"
 
 const options = [
   {
@@ -15,7 +15,7 @@ const options = [
   {
     icon: <Users className="w-7 h-7 text-zinc-500" />,
     title: "Email",
-    href: "mailto:lelattar@uwo.ca",
+    href: "mailto:laylaattar@live.com",
   }
 ]
 

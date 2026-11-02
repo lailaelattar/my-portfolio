@@ -45,12 +45,16 @@ export default function Home() {
         <section id="hero" className="w-full">
           <div className="w-full text-center">
             <p className="text-2xl text-zinc-400">
-              Hey, I'm Laila! 👋 Western University Graduate in Computer Science & Media Studies
+              Hey, I&apos;m Laila! 👋 AI Operations Specialist at Opendoor
             </p>
             <h1 className="text-6xl font-semibold tracking-tight text-zinc-50 mt-4">
-              I design and build data-driven products that{" "}
-              <span className="hero-underline">deliver real impact</span>.
+              I turn complex data into{" "}
+              <span className="hero-underline">AI workflows that work</span>.
             </h1>
+            <p className="mt-6 mx-auto max-w-2xl text-lg leading-relaxed text-zinc-400">
+              From Python and Snowflake detection systems to automated operational
+              workflows, I connect engineering, analytics, and real human needs.
+            </p>
           </div>
           <div className="flex w-full flex-col items-center py-35 px-16">
             <Button

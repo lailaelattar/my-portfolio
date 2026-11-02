@@ -5,7 +5,7 @@ import { ArrowUpRight } from "lucide-react"
 const links = [
   { label: "LinkedIn", href: "https://linkedin.com/in/laila-el-attar" },
   { label: "Resume", href:"/Laila El attar Resume.pdf" },
-  { label: "Email", href: "mailto:lelattar@uwo.ca" },
+  { label: "Email", href: "mailto:laylaattar@live.com" },
 ]
 
 export default function Footer() {
