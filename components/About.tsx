@@ -12,32 +12,17 @@ export default function About() {
           <div className="flex flex-col gap-4 items-center text-base font-medium sm:flex-row">
             <div className="flex flex-col gap-3">
               <p className="max-w-150 text-1xl tracking-tight text-black dark:text-zinc-50">
-                I&apos;m an AI Operations Specialist at Opendoor, with degrees in Computer Science and Media &amp; Communication Studies from Western University.
+                My background spans software engineering, customer research, and AI operations, with degrees in Computer Science and Media &amp; Communication Studies from Western University.
               </p>
               <p className="max-w-150 text-1xl tracking-tight text-black dark:text-zinc-50">
-                I build systems that help teams catch problems early and act with confidence. At Opendoor, I work across Python, Snowflake, and SQL to audit AI outputs, detect at-risk contracts, and organize reliable utility provider data.
+                I like getting close to a problem: listening to the people experiencing it, finding patterns in the data, and working with others to figure out what would make things better. At Hydro One, that meant investigating enrollment friction and helping carry a fix through to implementation.
               </p>
               <p className="max-w-150 text-1xl tracking-tight text-black dark:text-zinc-50">
-                Using Gumloop, Parallel AI, and MCP-connected Claude, I turn manual monitoring into automated workflows. My background in software engineering, customer research, and UX keeps that work grounded in the people using it.
+                At IO Industries, I built a tool that helps customers choose compatible lenses. Now, as an AI Operations Specialist at Opendoor, I build detection systems and automated workflows that help teams catch issues early. Across those roles, I enjoy turning an unclear problem into something concrete, learning from feedback, and improving it.
               </p>
               <p className="max-w-150 text-1xl tracking-tight text-black dark:text-zinc-50">
                 In my free time, I love exploring new coffee shops and planning my next trip abroad ✈️
               </p>
-              <div className="max-w-150 rounded-xl border border-zinc-700 bg-zinc-800/40 p-4">
-                <h2 className="text-sm font-semibold text-zinc-400 mb-2">
-                  Certifications
-                </h2>
-                <a
-                  href="https://www.pendo.io/learninglab/certificates/cmvbmc2mz00122ylopk0rwmi8/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-sm text-zinc-50 underline decoration-zinc-500 underline-offset-4 transition-colors hover:text-violet-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-300"
-                >
-                  Pendo certification
-                  <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
-                  <span className="sr-only"> (opens in a new tab)</span>
-                </a>
-              </div>
               <p className="max-w-150 text-1xl tracking-tight text-black dark:text-zinc-50">
                 Let&apos;s connect!
               </p>

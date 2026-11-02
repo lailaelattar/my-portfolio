@@ -7,6 +7,7 @@ const links = [
   { label: "About", id: "about-me" },
   { label: "Experience", id: "experience" },
   { label: "Projects", id: "work" },
+  { label: "Certificates", id: "certifications" },
   { label: "Contact", id: "contact" },
 ]
 
@@ -32,7 +33,7 @@ export default function Navbar({ activeSection }: { activeSection?: string }) {
   }
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-2 transition-all duration-300
+    <nav className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between gap-2 px-4 sm:px-8 py-2 transition-all duration-300
       ${scrolled ? "bg-white/70 dark:bg-zinc-900/70 backdrop-blur-md shadow-sm" : "bg-transparent"}`}
     >
       <div className="flex items-center gap-2">
@@ -43,13 +44,13 @@ export default function Navbar({ activeSection }: { activeSection?: string }) {
           Laila El attar
         </span>
       </div>
-      <NavigationMenu>
+      <NavigationMenu className="min-w-0 overflow-x-auto">
         <NavigationMenuList>
           {links.map(({ label, id }) => (
             <button
               key={id}
               onClick={() => handleNavClick(id)}
-              className={`relative px-3 py-1.5 text-sm font-medium font-sans transition-colors
+              className={`relative px-2 sm:px-3 py-1.5 text-xs sm:text-sm font-medium font-sans transition-colors
                 ${activeSection === id ? "text-black dark:text-white" : "text-zinc-500 hover:text-black dark:hover:text-white"}
                 group`}
             >
