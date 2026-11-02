@@ -93,30 +93,30 @@ function TimelineItem({ item, index }: { item: typeof workExperience[0]; index: 
     return (
     <div
       ref={ref}
-      className="flex flex-col sm:flex-row gap-3 sm:gap-6 items-start"
+      className="flex gap-6 items-start"
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? "translateY(0)" : "translateY(24px)",
         transition: `opacity 0.5s ease ${index * 0.15}s, transform 0.5s ease ${index * 0.15}s`,
       }}
     >
-      <div className="flex flex-col items-center w-full sm:w-40 shrink-0 pt-1">
-        <div className="sm:text-right w-full sm:pr-4">
-          <p className="text-sm font-semibold text-foreground ">{item.company}</p>
-          <p className="text-xs text-muted-foreground ">{item.date}</p>
+      <div className="flex flex-col items-center w-40 shrink-0 pt-1">
+        <div className="text-right w-full pr-4">
+          <p className="text-sm font-semibold text-zinc-800 dark:text-zinc-200">{item.company}</p>
+          <p className="text-xs text-zinc-500 dark:text-zinc-400">{item.date}</p>
         </div>
       </div>
-      <div className="hidden sm:flex flex-col items-center shrink-0">
-        <div className="w-3 h-3 rounded-full bg-zinc-400  mt-1.5 shrink-0" />
-        <div className="w-px flex-1 bg-zinc-200  min-h-[80px]" />
+      <div className="flex flex-col items-center shrink-0">
+        <div className="w-3 h-3 rounded-full bg-zinc-400 dark:bg-zinc-500 mt-1.5 shrink-0" />
+        <div className="w-px flex-1 bg-zinc-200 dark:bg-zinc-700 min-h-[80px]" />
       </div>
-      <div className="min-w-0 w-full flex-1 pb-10">
-        <div className="paper-card rounded-xl p-5">
-          <h3 className="text-lg font-semibold text-foreground  mb-3">{item.title}</h3>
+      <div className="flex-1 pb-10">
+        <div className="rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800/60 p-5 shadow-sm">
+          <h3 className="text-lg font-semibold text-black dark:text-white mb-3">{item.title}</h3>
           <ul className="space-y-1.5">
             {item.bullets.map((b, i) => (
-              <li key={i} className="flex gap-2 text-sm text-muted-foreground ">
-                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-zinc-400  shrink-0" />
+              <li key={i} className="flex gap-2 text-sm text-zinc-600 dark:text-zinc-300">
+                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0" />
                 {b}
               </li>
             ))}
@@ -132,7 +132,7 @@ export default function Experience() {
     const [activeTab, setActiveTab] = useState<"work" | "extra">("work")
     const items = activeTab === "work" ? workExperience : extracurricular
     return (
-        <section id="experience" className="w-full flex flex-col items-center py-20 border-t border-border">
+        <section id="experience" className="w-full flex flex-col items-center py-20 px-16">
             <ButtonGroup className="mb-8">
                 <Button variant={activeTab === "work" ? "default" : "outline"} onClick={() => setActiveTab("work")}>
                 Work Experience
@@ -141,7 +141,7 @@ export default function Experience() {
                 Extracurriculars
                 </Button>
             </ButtonGroup>
-            <h2 className="w-full text-center text-4xl sm:text-5xl font-semibold mb-8">
+            <h2 className="w-full text-center text-6xl font-semibold mb-8">
                 {activeTab === "work" ? "Work Experience" : "Extracurriculars"}
             </h2>
             <div className="w-full">

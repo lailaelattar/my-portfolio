@@ -38,32 +38,30 @@ export default function Home() {
   }
 
   return (
+    // No bg classes — let the canvas show through
     <div className="flex flex-col min-h-screen flex-1 items-center justify-center relative z-10">
       <Navbar activeSection={activeSection} />
-      <main className="flex flex-1 w-full max-w-6xl mx-auto flex-col items-center justify-between pt-40 pb-12 px-6 sm:pt-48 sm:px-12 sm:items-start">
+      <main className="flex flex-1 w-full max-w-5xl mx-auto flex-col items-center justify-between py-32 px-6 sm:py-45 sm:px-16 sm:items-start">
         {/* Hero */}
         <section id="hero" className="w-full">
-          <p className="notebook-label text-center mb-5">Research · Build · Learn</p>
-          <div className="w-full max-w-4xl mx-auto text-center">
-            <p className="text-base text-muted-foreground">
-              Hey, I&apos;m Laila.
+          <div className="w-full text-center">
+            <p className="text-2xl text-zinc-400">
+              Hey, I&apos;m Laila! 👋 Curious about people. Driven to build.
             </p>
-            <h1 className="text-5xl sm:text-7xl font-semibold tracking-tight text-foreground mt-6 leading-tight">
+            <h1 className="text-4xl sm:text-6xl font-semibold tracking-tight text-zinc-50 mt-4">
               I connect the dots to build{" "}
               <span className="hero-underline">products that help people</span>.
             </h1>
-            <p className="mt-6 mx-auto max-w-2xl text-lg leading-relaxed text-muted-foreground">
+            <p className="mt-6 mx-auto max-w-2xl text-lg leading-relaxed text-zinc-400">
               I bring together user research, data, and hands-on building to understand
               problems, test ideas, and turn what I learn into useful products.
             </p>
           </div>
-          <p className="margin-note text-center mt-8 text-xl">A few things I’ve built, and what I’m learning along the way.</p>
-          <div className="flex w-full flex-col items-center py-16 px-6">
+          <div className="flex w-full flex-col items-center py-35 px-16">
             <Button
               variant="outline"
               size="icon"
-              aria-label="Read about Laila"
-              className="transition-transform hover:translate-y-1"
+              className="animate-bounce transition-transform hover:scale-110"
               onClick={scrollToAbout}
             >
               <ChevronDown />

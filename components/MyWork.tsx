@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ButtonGroup } from "@/components/ui/button-group"
@@ -17,7 +17,6 @@ const projects = [
   {
     id: 1,
     title: "Lens Calculator — IO Industries",
-    note: "01 / Shipped tool",
     description: "A live lens compatibility calculator used by hundreds of customers each month, addressing a frustration cited in 30%+ of support inquiries.",
     tags: ["React.js", "Node.js"],
     image: "/IOI.png",
@@ -26,7 +25,6 @@ const projects = [
   {
     id: 2,
     title: "MSA Website — Western University",
-    note: "02 / Community",
     description: "A website for Western University's Muslim Students' Association, displaying events, prayer times, and more",
     tags: ["JavaScript", "MongoDB", "Figma"],
     image: "/Western MSA.png",
@@ -35,7 +33,6 @@ const projects = [
   {
     id: 3,
     title: "Triage Track — Hackathon",
-    note: "03 / Hackathon",
     description: "Emergency triage management tool built in 72 hours with AI voice intake",
     tags: ["JavaScript", "VoiceFlow", "Claude 2.0", "Figma"],
     image: "/Triage Track.png",
@@ -44,7 +41,6 @@ const projects = [
   {
     id: 4,
     title: "LitLab — UX Project",
-    note: "04 / Product exploration",
     description: "A media literacy app prototype designed to combat misinformation through habit-building",
     tags: ["Figma"],
     image: "/LitLab.png",
@@ -87,25 +83,22 @@ export default function MyWork() {
   const [workTab, setWorkTab] = useState<"projects" | "creative" | "writing">("projects")
   const [carouselIndex, setCarouselIndex] = useState(0)
 
-  const selectTab = (tab: typeof workTab) => {
-    setWorkTab(tab)
-    setCarouselIndex(0)
-  }
+  useEffect(() => setCarouselIndex(0), [workTab])
 
   return (
-    <section id="work" className="w-full flex flex-col items-center py-20 border-t border-border">
-      <h2 className="w-full text-center text-4xl sm:text-5xl font-semibold mb-8">
+    <section id="work" className="w-full flex flex-col items-center py-15">
+      <h1 className="w-full text-center text-6xl font-semibold mb-8">
         My Work
-      </h2>
+      </h1>
 
       <ButtonGroup className="mb-8">
-        <Button variant={workTab === "projects" ? "default" : "outline"} onClick={() => selectTab("projects")}>
+        <Button variant={workTab === "projects" ? "default" : "outline"} onClick={() => setWorkTab("projects")}>
           Projects
         </Button>
-        <Button variant={workTab === "creative" ? "default" : "outline"} onClick={() => selectTab("creative")}>
+        <Button variant={workTab === "creative" ? "default" : "outline"} onClick={() => setWorkTab("creative")}>
           Creative
         </Button>
-        <Button variant={workTab === "writing" ? "default" : "outline"} onClick={() => selectTab("writing")}>
+        <Button variant={workTab === "writing" ? "default" : "outline"} onClick={() => setWorkTab("writing")}>
           Writing
         </Button>
       </ButtonGroup>
@@ -119,7 +112,6 @@ export default function MyWork() {
                 <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
               </div>
               <CardHeader className="flex-1">
-                <p className="notebook-label mb-2">{item.note}</p>
                 <CardTitle>{item.title}</CardTitle>
                 <div className="flex flex-wrap gap-1 mt-1">
                   {item.tags.map((tag) => (
@@ -155,10 +147,10 @@ export default function MyWork() {
             {creative.map((item) => (
               <div key={item.id} className="min-w-full">
                 <Card className="pt-0">
-                  <div className="aspect-video w-full overflow-hidden rounded-t-xl bg-muted flex items-center justify-center">
+                  <div className="aspect-video w-full overflow-hidden rounded-t-xl bg-zinc-800 flex items-center justify-center">
                     {item.image
                       ? <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
-                      : <span className="text-muted-foreground text-sm">Coming soon</span>
+                      : <span className="text-zinc-500 text-sm">Coming soon</span>
                     }
                   </div>
                   <CardHeader>
@@ -171,18 +163,16 @@ export default function MyWork() {
           </div>
 
           <button
-            aria-label="Previous creative project"
             onClick={() => setCarouselIndex((i) => Math.max(i - 1, 0))}
             disabled={carouselIndex === 0}
-            className="absolute left-2 top-1/2 -translate-y-1/2 p-2 bg-white/80  rounded-full shadow disabled:opacity-30 z-10"
+            className="absolute left-2 top-1/2 -translate-y-1/2 p-2 bg-white/80 dark:bg-zinc-800/80 rounded-full shadow disabled:opacity-30 z-10"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
           <button
-            aria-label="Next creative project"
             onClick={() => setCarouselIndex((i) => Math.min(i + 1, creative.length - 1))}
             disabled={carouselIndex === creative.length - 1}
-            className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-white/80  rounded-full shadow disabled:opacity-30 z-10"
+            className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-white/80 dark:bg-zinc-800/80 rounded-full shadow disabled:opacity-30 z-10"
           >
             <ChevronRight className="w-5 h-5" />
           </button>
@@ -192,7 +182,7 @@ export default function MyWork() {
               <button
                 key={i}
                 onClick={() => setCarouselIndex(i)}
-                className={`w-2 h-2 rounded-full transition-colors ${i === carouselIndex ? "bg-primary" : "bg-zinc-300"}`}
+                className={`w-2 h-2 rounded-full transition-colors ${i === carouselIndex ? "bg-white" : "bg-zinc-600"}`}
               />
             ))}
           </div>
