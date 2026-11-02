@@ -12,8 +12,8 @@ export default function Footer() {
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" })
 
   return (
-    <footer className="w-full border-t border-zinc-200 dark:border-zinc-800 mt-20 py-5 px-16 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <p className="text-sm text-zinc-400 dark:text-zinc-500">
+    <footer className="w-full border-t border-border  mt-20 py-6 px-0 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p className="text-sm text-muted-foreground ">
         © {new Date().getFullYear()} Laila El Attar — Designed & built by me
       </p>
 
@@ -24,7 +24,7 @@ export default function Footer() {
             href={href}
             target={href.startsWith("http") ? "_blank" : undefined}
             rel="noopener noreferrer"
-            className="flex items-center gap-0.5 text-sm text-zinc-500 hover:text-black dark:hover:text-white transition-colors group"
+            className="flex items-center gap-0.5 text-sm text-muted-foreground hover:text-foreground  transition-colors group"
           >
             {label}
             <ArrowUpRight className="w-3.5 h-3.5 opacity-0 -translate-y-0.5 translate-x-0.5 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-200" />
@@ -34,7 +34,7 @@ export default function Footer() {
 
       <button
         onClick={scrollToTop}
-        className="text-sm text-zinc-400 hover:text-black dark:hover:text-white transition-colors"
+        className="text-sm text-muted-foreground hover:text-foreground  transition-colors"
       >
         Back to top ↑
       </button>
