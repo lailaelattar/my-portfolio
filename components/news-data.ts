@@ -40,7 +40,9 @@ export const stories: Record<SectionId, Story[]> = {
     { id: "gazette", title: "A closer look at campus life", category: "Writing", source: "The Western Gazette", image: "/The Western Gazette.png", summary: "Campus news and student-life reporting at Western University.", paragraphs: ["As a News Intern at The Western Gazette, I reported on the people and stories shaping student life."], link: "https://westerngazette.ca/search/?l=25&sort=relevance&f=html&t=article%2Ccollection&app=editorial&q=Laila+el+attar", linkLabel: "Browse my bylines" },
   ],
   certifications: [
-    { id: "ux-design", title: "UX design certification", category: "Design", source: "UX design", summary: "Learning in user experience and design.", paragraphs: ["I completed a certification in UX design."] },
+    { id: "ux-wireframes", title: "Build Wireframes and Low-Fidelity Prototypes", category: "Design", source: "Google", date: "Issued June 2025", summary: "Google UX design course · Wireframes and low-fidelity prototypes.", paragraphs: ["Completed Google’s Build Wireframes and Low-Fidelity Prototypes course."], link: "https://www.coursera.org/account/accomplishments/verify/MZ2KYDWYZ1R1", linkLabel: "View credential" },
+    { id: "ux-process", title: "Start the UX Design Process: Empathize, Define, and Ideate", category: "Design", source: "Google", date: "Issued April 2025", summary: "Google UX design course · Empathize, define, and ideate.", paragraphs: ["Completed Google’s Start the UX Design Process: Empathize, Define, and Ideate course."], link: "https://www.coursera.org/account/accomplishments/verify/TR6478DSGP57", linkLabel: "View credential" },
+    { id: "ux-foundations", title: "Foundations of User Experience (UX) Design", category: "Design", source: "Google", date: "Issued July 2023", summary: "Google UX design course · Foundations of user experience design.", paragraphs: ["Completed Google’s Foundations of User Experience (UX) Design course."], link: "https://www.coursera.org/account/accomplishments/verify/24ZLCY7S5F3Y", linkLabel: "View credential" },
     { id: "electricity-basics", title: "Electricity Basics", category: "Learning", source: "Electricity Basics certificate", summary: "Foundations in electricity.", paragraphs: ["I completed an Electricity Basics certificate."] },
     { id: "pendo", title: "Continuing to learn, alongside the work", category: "Learning", source: "Pendo Learning Lab", summary: "Pendo certification · View the original credential.", paragraphs: ["My Pendo Learning Lab credential is available at the link below."], link: "https://www.pendo.io/learninglab/certificates/cmvbmc2mz00122ylopk0rwmi8/", linkLabel: "View Pendo credential" },
   ],
@@ -50,10 +52,3 @@ export const stories: Record<SectionId, Story[]> = {
     { id: "resume", title: "The experience, in one document", category: "Connect", source: "Résumé", summary: "A PDF of my professional experience, education, and skills.", paragraphs: ["Download my current résumé for the full picture of my experience in AI operations, customer research, software engineering, and communication."], link: "/Laila El attar Resume.pdf", linkLabel: "Open résumé" },
   ],
 }
-
-// These links were supplied directly by Laila. Course titles still need confirmation.
-export const courseraCredentials = [
-  { label: "Coursera credential 01", href: "https://www.coursera.org/account/accomplishments/verify/MZ2KYDWYZ1R1" },
-  { label: "Coursera credential 02", href: "https://www.coursera.org/account/accomplishments/verify/TR6478DSGP57" },
-  { label: "Coursera credential 03", href: "https://www.coursera.org/account/accomplishments/verify/24ZLCY7S5F3Y" },
-]

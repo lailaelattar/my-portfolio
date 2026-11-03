@@ -2,8 +2,9 @@
 
 import { useRef, useState, useSyncExternalStore } from "react"
 import Image from "next/image"
+import PersonalityTicker from "./PersonalityTicker"
 import { ArrowUpRight, ChevronLeft, ChevronRight, Search, X } from "lucide-react"
-import { sections, stories, courseraCredentials, type SectionId } from "./news-data"
+import { sections, stories, type SectionId } from "./news-data"
 
 function readSection(): SectionId {
   const hash = window.location.hash.slice(1)
@@ -56,6 +57,7 @@ export default function NewsPortfolio() {
           </button>
           </div>
         </header>
+        <PersonalityTicker />
         <nav className="news-sections" aria-label="Portfolio sections">
           <button className="news-nav-step" type="button" onClick={() => step(-1)} aria-label="Previous section"><ChevronLeft size={18} /></button>
           <div className="news-section-links">
@@ -64,9 +66,6 @@ export default function NewsPortfolio() {
           <button className="news-nav-step" type="button" onClick={() => step(1)} aria-label="Next section"><ChevronRight size={18} /></button>
         </nav>
         {searchOpen && <form className="news-search" role="search" onSubmit={event => event.preventDefault()}><label htmlFor="portfolio-search">Search {current.label.toLowerCase()}</label><input ref={searchRef} id="portfolio-search" type="search" value={query} placeholder="Title, topic, or organization…" onChange={event => setFilters({ section, category, query: event.target.value })} /><span>{filtered.length} results</span></form>}
-        {section === "certifications" && <div className="news-credential-links" aria-label="Coursera verification links">
-          {courseraCredentials.map(credential => <a key={credential.href} href={credential.href} target="_blank" rel="noopener noreferrer">{credential.label}<ArrowUpRight size={14} aria-hidden="true" /></a>)}
-        </div>}
         <div ref={workspaceRef} className="news-workspace">
           <aside className="news-topics" aria-label="Filter by topic">
             <p className="news-small-label">Browse</p>
@@ -77,7 +76,7 @@ export default function NewsPortfolio() {
               {item.image && !item.experienceType ? <div className="news-thumb"><Image src={item.image} alt="" fill sizes="(max-width: 760px) 130px, (max-width: 1000px) 140px, 220px" /></div> : <div className="news-type-thumb news-organization-thumb" aria-hidden="true">{item.organization ?? item.source}</div>}
               <div>
                 {item.experienceType && <div className="news-experience-meta"><span>{item.experienceType}</span>{item.date && <span>{item.date}</span>}</div>}
-                <h2>{item.role ?? item.title}</h2><p>{item.summary}</p><span className="news-story-source">{item.source}</span>
+                <h2>{item.role ?? item.title}</h2>{item.date && !item.experienceType && <span className="news-story-source">{item.date}</span>}<p>{item.summary}</p><span className="news-story-source">{item.source}</span>
               </div>
             </button>) : <div className="news-empty"><h2>No stories found.</h2><p>Try a different search or topic.</p><button type="button" onClick={() => setFilters({ section, category: "All", query: "" })}>Show all {current.label.toLowerCase()}</button></div>}
             <div className="news-list-end">End of this section <span aria-hidden="true">◇</span></div>
