@@ -183,14 +183,16 @@ html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
 .intro-eyebrow { font-size: 12px; text-transform: uppercase; letter-spacing: .2em; }
 .intro-name { position: relative; margin: 10px 0 28px; line-height: 1; }
 .intro-signature { display: block; width: 100%; overflow: visible; font-family: var(--font-cormorant), Georgia, serif; font-style: italic; font-size: 178px; font-weight: 400; letter-spacing: -7px; }
-.signature-outline { fill: transparent; stroke: #302739; stroke-width: .7; stroke-dasharray: 750; stroke-dashoffset: 750; animation: ink-outline 2s ease forwards; }
-.signature-ink { fill: #302739; clip-path: inset(0 100% 0 0); animation: ink-reveal 1.8s ease-in-out .15s forwards; }
+.signature-stroke { opacity: 0; fill: none; stroke: #302739; stroke-width: 2.8; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
+.writing-pen { pointer-events: none; transition: opacity .35s ease; filter: drop-shadow(5px 8px 4px #30273945); }
+.pen-shadow { filter: blur(4px); }
 .signature-rule { width: 88%; height: 30px; margin: -10px auto 0; }
-.signature-rule path { stroke: #775c70; stroke-width: 1.5; stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw-rule .8s ease 1.3s forwards; }
-.intro-roles { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px 28px; max-width: 940px; margin: 0 auto; }
-.intro-role { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; opacity: 0; animation: role-arrive .65s ease forwards; }
-.role-index { font-size: 9px; opacity: .65; }
-.intro-footer { border-top: 1px solid #30273955; padding-top: 20px; }
+.signature-rule path { stroke: #775c70; stroke-width: 1.5; stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw-rule .8s ease 5.4s forwards; }
+.intro-roles { display: grid; place-items: center; min-height: 48px; margin: 0 auto; }
+.intro-role { display: inline-block; font-size: clamp(16px, 2vw, 22px); }
+.rotating-role { animation: role-cycle 3.2s ease both; }
+@keyframes role-cycle { 0% { opacity: 0; transform: translateY(12px); } 12%, 84% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(-10px); } }
+.intro-footer { justify-content: flex-end; border-top: 1px solid #30273955; padding-top: 20px; }
 .intro-explore { display: inline-flex; gap: 12px; align-items: center; padding: 8px 0; }
 .intro-explore:hover { text-decoration: underline; text-underline-offset: 4px; }
 .intro-explore:focus-visible { outline: 2px solid #302739; outline-offset: 6px; }
@@ -200,25 +202,23 @@ html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
 .portfolio-content [data-slot="card"] { background: #2b2632; border: 1px solid #d4bfd329; box-shadow: none; }
 .portfolio-content [data-slot="card-title"] { font-size: 1.15rem; }
 .portfolio-nav { background: #201d28f2; color: #f4edf5; backdrop-filter: blur(12px); border-bottom: 1px solid #d4bfd329; }
-@keyframes ink-outline { to { stroke-dashoffset: 0; } }
-@keyframes ink-reveal { to { clip-path: inset(0); } }
 @keyframes draw-rule { to { stroke-dashoffset: 0; } }
-@keyframes role-arrive { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 @media (max-width: 640px) {
   .media-intro { padding-top: 110px; }
   .intro-composition { margin: 64px auto; }
   .intro-signature { width: 115%; margin-left: -7.5%; }
   .intro-registration { font-size: 9px; }
-  .intro-roles { display: grid; grid-template-columns: 1fr 1fr; text-align: left; gap: 20px 16px; }
-  .intro-role { font-size: 12px; }
+  .intro-roles { min-height: 48px; }
+  .intro-role { font-size: 16px; }
   .intro-footer { align-items: flex-start; font-size: 11px; }
   .intro-footer > span { max-width: 150px; }
   .intro-eyebrow { font-size: 9px; letter-spacing: .13em; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .signature-outline, .signature-ink, .signature-rule path, .intro-role { animation: none; }
-  .signature-outline, .signature-rule path { stroke-dashoffset: 0; }
-  .signature-ink { clip-path: inset(0); }
+  .signature-rule path, .intro-role { animation: none; }
+  .signature-stroke, .signature-rule path { stroke-dashoffset: 0; }
+  .signature-stroke { opacity: 1; }
+  .writing-pen { display: none; }
   .intro-role { opacity: 1; }
 }
