@@ -2,11 +2,12 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    cursor: none !important;
   }
 
   body {
     @apply bg-background text-foreground;
-    background-color: #201d28 !important;
+    background-color: #080818 !important;
     font-family: var(--font-jost), sans-serif;
   }
 
@@ -20,7 +21,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-jost), sans-serif;
+  --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -133,17 +134,18 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    cursor: none !important;
   }
   body {
     @apply bg-background text-foreground;
-    background-color: #201d28 !important;
-    font-family: var(--font-jost), sans-serif;
+    background-color: #080818 !important;
+    font-family: 'Jost', sans-serif;
   }
   html {
     @apply font-sans;
   }
   h1, h2, h3 {
-    font-family: var(--font-cormorant), Georgia, serif;
+    font-family: 'Cormorant Garamond', Georgia, serif;
     font-style: italic;
   }
 }
@@ -167,55 +169,4 @@
 }
 @keyframes underline-draw {
   to { width: 100%; }
-}
-
-/* Calligraphic masthead with softly raised ink. */
-html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
-.media-intro {
-  width: 100%; min-height: 100svh; position: relative; display: flex;
-  align-items: center; justify-content: center; padding: 112px 24px 100px;
-  background: radial-gradient(ellipse at 48% 36%, #efebf0 0%, #dfd9e4 48%, #c8bfd3 100%);
-  color: #443944; overflow: hidden;
-}
-.intro-composition { width: 100%; max-width: 1240px; text-align: center; }
-.intro-name { position: relative; margin: 0; line-height: 1; }
-.intro-signature { display: block; width: 100%; overflow: visible; }
-.signature-lettering { filter: drop-shadow(0 10px 9px #4a35402b); }
-.signature-letter { transform-box: fill-box; transform-origin: center; animation: write-letter .8s cubic-bezier(.24,.6,.3,1) both; }
-.ink-depth { fill: #8b7488; }
-.ink-edge { fill: #c1aebc; stroke: #f0e3ed; stroke-width: .45; }
-.ink-face { stroke: #7a6075; stroke-width: .45; stroke-dasharray: 1; animation: ink-settle .7s ease both; animation-delay: inherit; }
-.signature-letter > .ink-face { animation-delay: inherit; }
-.intro-roles { display: grid; place-items: center; min-height: 46px; margin: 8px auto 0; }
-.intro-role { display: inline-block; font-size: clamp(14px, 1.5vw, 19px); font-weight: 400; letter-spacing: .06em; }
-.rotating-role { animation: role-cycle 3.6s ease both; }
-.intro-explore { position: absolute; bottom: 36px; display: inline-flex; align-items: center; gap: 10px; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; padding: 10px; color: #615363; }
-.intro-explore:hover { color: #302630; }
-.intro-explore:focus-visible { outline: 2px solid #615363; outline-offset: 4px; }
-.portfolio-content > section { border-bottom: 1px solid #d4bfd329; }
-.portfolio-content h1, .portfolio-content h2 { font-style: normal; }
-.portfolio-content h3 { font-family: var(--font-jost), sans-serif; font-style: normal; }
-.portfolio-content [data-slot="card"] { background: #2b2632; border: 1px solid #d4bfd329; box-shadow: none; }
-.portfolio-content [data-slot="card-title"] { font-size: 1.15rem; }
-.portfolio-nav { background: #201d28f2; color: #f4edf5; backdrop-filter: blur(12px); border-bottom: 1px solid #d4bfd329; }
-@keyframes write-letter {
-  0% { opacity: 0; clip-path: inset(0 100% 0 0); transform: translateY(2px); }
-  8% { opacity: 1; }
-  100% { opacity: 1; clip-path: inset(-15% -15% -25% -15%); transform: translateY(0); }
-}
-@keyframes ink-settle { from { stroke-dashoffset: 1; fill-opacity: .65; } to { stroke-dashoffset: 0; fill-opacity: 1; } }
-@keyframes role-cycle { 0% { opacity: 0; transform: translateY(8px); } 12%, 85% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(-8px); } }
-@media (max-width: 640px) {
-  .media-intro { padding: 112px 6px 100px; }
-  .intro-signature { width: 110%; margin-left: -5%; }
-  .intro-roles { margin-top: 28px; }
-  .intro-role { font-size: 14px; letter-spacing: .03em; }
-  .portfolio-nav [data-slot="navigation-menu"] { flex: 0 0 100%; }
-}
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  .signature-letter, .ink-face, .intro-role { animation: none; }
-  .signature-letter { opacity: 1; clip-path: none; }
-  .ink-face { stroke-dashoffset: 0; fill-opacity: 1; }
-  .intro-role { opacity: 1; }
 }
