@@ -1,21 +1,17 @@
 import type { Metadata } from "next"
-import { Cormorant_Garamond, Jost } from "next/font/google"
+import localFont from "next/font/local"
 import "./globals.css"
-import CustomCursor from "@/components/Customcursor"
-import CloudBackground from "@/components/CloudBackground"
 
-const jost = Jost({
-  variable: "--font-jost",
-  subsets: ["latin"],
-  weight: ["300", "400", "500"],
+const jost = localFont({ src: "../public/fonts/news/Jost.ttf", variable: "--font-jost", weight: "100 900", display: "swap" })
+const cormorant = localFont({
+  src: [
+    { path: "../public/fonts/news/CormorantGaramond.ttf", weight: "300 700", style: "normal" },
+    { path: "../public/fonts/news/CormorantGaramond-Italic.ttf", weight: "300 700", style: "italic" },
+  ], variable: "--font-cormorant", display: "swap", preload: false,
 })
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
-  subsets: ["latin"],
-  weight: ["300", "400", "600"],
-  style: ["normal", "italic"],
-})
+const newsMasthead = localFont({ src: "../public/fonts/news/UnifrakturMaguntia-Book.ttf", variable: "--font-news-masthead", display: "swap" })
+const newsHeadline = localFont({ src: "../public/fonts/news/ArchivoBlack-Regular.ttf", variable: "--font-news-headline", display: "swap" })
 
 export const metadata: Metadata = {
   title: "Laila El Attar — Portfolio",
@@ -28,12 +24,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${jost.variable} ${cormorant.variable} dark h-full antialiased`}
+      className={`${jost.variable} ${cormorant.variable} ${newsMasthead.variable} ${newsHeadline.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#080818] text-zinc-50">
-        <CloudBackground />
+      <body className="min-h-full flex flex-col bg-background text-foreground">
         {children}
-        <CustomCursor />
       </body>
     </html>
   )
