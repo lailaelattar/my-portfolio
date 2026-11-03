@@ -34,11 +34,11 @@ export default function Navbar({ activeSection }: { activeSection?: string }) {
 
   return (
     <nav className={`portfolio-nav fixed top-0 left-0 right-0 z-50 flex flex-wrap items-center justify-between gap-2 px-4 sm:px-8 py-2 transition-all duration-300
-      ${scrolled ? "bg-white/70 dark:bg-zinc-900/70 backdrop-blur-md shadow-sm" : "bg-transparent"}`}
+      ${scrolled ? "bg-white/70  backdrop-blur-md shadow-sm" : "bg-transparent"}`}
     >
       <div className="flex items-center gap-2">
         <span
-          className="text-sm font-semibold text-zinc-700 dark:text-zinc-200 cursor-pointer"
+          className="text-sm font-semibold text-zinc-700  cursor-pointer"
           onClick={() => pathname === "/" ? window.scrollTo({ top: 0, behavior: "smooth" }) : router.push("/")}
         >
           Laila El Attar
@@ -51,11 +51,11 @@ export default function Navbar({ activeSection }: { activeSection?: string }) {
               key={id}
               onClick={() => handleNavClick(id)}
               className={`relative px-2 sm:px-3 py-1.5 text-xs sm:text-sm font-medium font-sans transition-colors
-                ${activeSection === id ? "text-black dark:text-white" : "text-zinc-500 hover:text-black dark:hover:text-white"}
+                ${activeSection === id ? "text-foreground " : "text-muted-foreground hover:text-foreground "}
                 group`}
             >
               {label}
-              <span className={`absolute bottom-0 left-0 h-px bg-black dark:bg-white transition-all duration-300
+              <span className={`absolute bottom-0 left-0 h-px bg-black  transition-all duration-300
                 ${activeSection === id ? "w-full" : "w-0"}`}
               />
             </button>
