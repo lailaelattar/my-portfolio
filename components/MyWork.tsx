@@ -87,7 +87,7 @@ export default function MyWork() {
 
   return (
     <section id="work" className="w-full flex flex-col items-center py-15">
-      <h1 className="w-full text-center text-4xl sm:text-5xl font-semibold mb-8">
+      <h1 className="w-full text-center text-6xl font-semibold mb-8">
         My Work
       </h1>
 
@@ -147,10 +147,10 @@ export default function MyWork() {
             {creative.map((item) => (
               <div key={item.id} className="min-w-full">
                 <Card className="pt-0">
-                  <div className="aspect-video w-full overflow-hidden rounded-t-xl bg-muted flex items-center justify-center">
+                  <div className="aspect-video w-full overflow-hidden rounded-t-xl bg-zinc-800 flex items-center justify-center">
                     {item.image
                       ? <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
-                      : <span className="text-muted-foreground text-sm">Coming soon</span>
+                      : <span className="text-zinc-500 text-sm">Coming soon</span>
                     }
                   </div>
                   <CardHeader>
@@ -165,14 +165,14 @@ export default function MyWork() {
           <button
             onClick={() => setCarouselIndex((i) => Math.max(i - 1, 0))}
             disabled={carouselIndex === 0}
-            className="absolute left-2 top-1/2 -translate-y-1/2 p-2 bg-white/80  rounded-full shadow disabled:opacity-30 z-10"
+            className="absolute left-2 top-1/2 -translate-y-1/2 p-2 bg-white/80 dark:bg-zinc-800/80 rounded-full shadow disabled:opacity-30 z-10"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
           <button
             onClick={() => setCarouselIndex((i) => Math.min(i + 1, creative.length - 1))}
             disabled={carouselIndex === creative.length - 1}
-            className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-white/80  rounded-full shadow disabled:opacity-30 z-10"
+            className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-white/80 dark:bg-zinc-800/80 rounded-full shadow disabled:opacity-30 z-10"
           >
             <ChevronRight className="w-5 h-5" />
           </button>
@@ -182,7 +182,7 @@ export default function MyWork() {
               <button
                 key={i}
                 onClick={() => setCarouselIndex(i)}
-                className={`w-2 h-2 rounded-full transition-colors ${i === carouselIndex ? "bg-primary" : "bg-zinc-300"}`}
+                className={`w-2 h-2 rounded-full transition-colors ${i === carouselIndex ? "bg-white" : "bg-zinc-600"}`}
               />
             ))}
           </div>
