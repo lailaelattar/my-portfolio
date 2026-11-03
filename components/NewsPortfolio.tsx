@@ -3,7 +3,7 @@
 import { useRef, useState, useSyncExternalStore } from "react"
 import Image from "next/image"
 import { ArrowUpRight, ChevronLeft, ChevronRight, Search, X } from "lucide-react"
-import { sections, stories, type SectionId } from "./news-data"
+import { sections, stories, courseraCredentials, type SectionId } from "./news-data"
 
 function readSection(): SectionId {
   const hash = window.location.hash.slice(1)
@@ -25,8 +25,8 @@ export default function NewsPortfolio() {
   const current = sections.find(item => item.id === section)!
   const category = filters.section === section ? filters.category : "All"
   const query = filters.section === section ? filters.query : ""
-  const categories = ["All", ...new Set(stories[section].map(story => story.category))]
-  const filtered = stories[section].filter(story => (category === "All" || story.category === category) && `${story.title} ${story.source} ${story.summary} ${story.tags?.join(" ") ?? ""}`.toLowerCase().includes(query.toLowerCase()))
+  const categories = section === "experience" ? ["All", "Work", "Extracurricular"] : ["All", ...new Set(stories[section].map(story => story.category))]
+  const filtered = stories[section].filter(story => (category === "All" || (section === "experience" ? story.experienceType : story.category) === category) && `${story.title} ${story.role ?? ""} ${story.source} ${story.date ?? ""} ${story.experienceType ?? ""} ${story.summary} ${story.tags?.join(" ") ?? ""}`.toLowerCase().includes(query.toLowerCase()))
   const story = filtered.find(item => item.id === selection) ?? filtered[0]
 
   const selectStory = (id: string) => {
@@ -64,6 +64,9 @@ export default function NewsPortfolio() {
           <button className="news-nav-step" type="button" onClick={() => step(1)} aria-label="Next section"><ChevronRight size={18} /></button>
         </nav>
         {searchOpen && <form className="news-search" role="search" onSubmit={event => event.preventDefault()}><label htmlFor="portfolio-search">Search {current.label.toLowerCase()}</label><input ref={searchRef} id="portfolio-search" type="search" value={query} placeholder="Title, topic, or organization…" onChange={event => setFilters({ section, category, query: event.target.value })} /><span>{filtered.length} results</span></form>}
+        {section === "certifications" && <div className="news-credential-links" aria-label="Coursera verification links">
+          {courseraCredentials.map(credential => <a key={credential.href} href={credential.href} target="_blank" rel="noopener noreferrer">{credential.label}<ArrowUpRight size={14} aria-hidden="true" /></a>)}
+        </div>}
         <div ref={workspaceRef} className="news-workspace">
           <aside className="news-topics" aria-label="Filter by topic">
             <p className="news-small-label">Browse</p>
@@ -71,16 +74,19 @@ export default function NewsPortfolio() {
           </aside>
           <section className="news-story-list" aria-label={`${current.label} stories`}>
             {filtered.length ? filtered.map(item => <button type="button" className="news-story" key={item.id} aria-controls="selected-article" aria-pressed={story?.id === item.id} onClick={() => selectStory(item.id)}>
-              {item.image ? <div className="news-thumb"><Image src={item.image} alt="" fill sizes="(max-width: 760px) 130px, (max-width: 1000px) 140px, 220px" /></div> : <div className="news-type-thumb" aria-hidden="true">{item.source.split(" ").slice(0, 2).map(word => word[0]).join("")}</div>}
-              <div><h2>{item.title}</h2><p>{item.summary}</p><span className="news-story-source">{item.source}</span></div>
+              {item.image && !item.experienceType ? <div className="news-thumb"><Image src={item.image} alt="" fill sizes="(max-width: 760px) 130px, (max-width: 1000px) 140px, 220px" /></div> : <div className="news-type-thumb news-organization-thumb" aria-hidden="true">{item.organization ?? item.source}</div>}
+              <div>
+                {item.experienceType && <div className="news-experience-meta"><span>{item.experienceType}</span>{item.date && <span>{item.date}</span>}</div>}
+                <h2>{item.role ?? item.title}</h2><p>{item.summary}</p><span className="news-story-source">{item.source}</span>
+              </div>
             </button>) : <div className="news-empty"><h2>No stories found.</h2><p>Try a different search or topic.</p><button type="button" onClick={() => setFilters({ section, category: "All", query: "" })}>Show all {current.label.toLowerCase()}</button></div>}
             <div className="news-list-end">End of this section <span aria-hidden="true">◇</span></div>
           </section>
           <article key={`${section}-${story?.id ?? "empty"}`} id="selected-article" ref={articleRef} className="news-article" aria-label="Selected story" tabIndex={0}>
             {story ? <div key={`${section}-${story.id}`} className="news-article-content">
-              {story.image && <figure className={`news-hero-image ${story.id === "profile" ? "news-portrait" : ""}`}><Image src={story.image} alt={story.imageAlt ?? story.source} fill sizes="(max-width: 760px) 100vw, 65vw" priority={story.id === "lens"} /></figure>}
-              <div className="news-story-meta"><span>{story.category}</span><span>{story.source}</span></div>
-              <h1>{story.title}</h1>
+              {story.image && !story.experienceType && <figure className={`news-hero-image ${story.id === "profile" ? "news-portrait" : ""}`}><Image src={story.image} alt={story.imageAlt ?? story.source} fill sizes="(max-width: 760px) 100vw, 65vw" priority={story.id === "lens"} /></figure>}
+              <div className="news-story-meta"><span>{story.experienceType ?? story.category}</span><span>{story.source}</span></div>
+              <h1>{story.role ?? story.title}</h1>
               {story.date && <p className="news-dateline">{story.date}</p>}
               <p className="news-deck">{story.summary}</p>
               <div className="news-article-body">{story.paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}</div>
@@ -89,7 +95,7 @@ export default function NewsPortfolio() {
               {filtered.length > 1 && <section className="news-more" aria-label="More in this section">
                 <h2>Continue exploring</h2>
                 <div>{filtered.filter(item => item.id !== story.id).slice(0, 2).map(item => <button type="button" key={item.id} onClick={() => selectStory(item.id)}>
-                  <span>{item.source}</span><h3>{item.title}</h3><ArrowUpRight size={17} aria-hidden="true" />
+                  <span>{item.source}</span><h3>{item.role ?? item.title}</h3><ArrowUpRight size={17} aria-hidden="true" />
                 </button>)}</div>
               </section>}
               <div className="news-article-end"><span>Selected from {current.label.toLowerCase()}</span><span aria-hidden="true">LE / Portfolio</span></div>
