@@ -33,7 +33,7 @@ export default function Navbar({ activeSection }: { activeSection?: string }) {
   }
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between gap-2 px-4 sm:px-8 py-2 transition-all duration-300
+    <nav className={`portfolio-nav fixed top-0 left-0 right-0 z-50 flex flex-wrap items-center justify-between gap-2 px-4 sm:px-8 py-2 transition-all duration-300
       ${scrolled ? "bg-white/70 dark:bg-zinc-900/70 backdrop-blur-md shadow-sm" : "bg-transparent"}`}
     >
       <div className="flex items-center gap-2">
@@ -41,10 +41,10 @@ export default function Navbar({ activeSection }: { activeSection?: string }) {
           className="text-sm font-semibold text-zinc-700 dark:text-zinc-200 cursor-pointer"
           onClick={() => pathname === "/" ? window.scrollTo({ top: 0, behavior: "smooth" }) : router.push("/")}
         >
-          Laila El attar
+          Laila El Attar
         </span>
       </div>
-      <NavigationMenu className="min-w-0 overflow-x-auto">
+      <NavigationMenu className="w-full max-w-none sm:w-auto sm:max-w-max min-w-0 overflow-x-auto">
         <NavigationMenuList>
           {links.map(({ label, id }) => (
             <button

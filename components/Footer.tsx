@@ -12,7 +12,7 @@ export default function Footer() {
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" })
 
   return (
-    <footer className="w-full border-t border-zinc-200 dark:border-zinc-800 mt-20 py-5 px-16 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <footer className="w-full border-t border-zinc-200 dark:border-zinc-800 mt-20 py-5 px-0 sm:px-16 flex flex-col sm:flex-row items-center justify-between gap-4">
       <p className="text-sm text-zinc-400 dark:text-zinc-500">
         © {new Date().getFullYear()} Laila El Attar — Designed & built by me
       </p>

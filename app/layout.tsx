@@ -1,8 +1,6 @@
 import type { Metadata } from "next"
 import { Cormorant_Garamond, Jost } from "next/font/google"
 import "./globals.css"
-import CustomCursor from "@/components/Customcursor"
-import CloudBackground from "@/components/CloudBackground"
 
 const jost = Jost({
   variable: "--font-jost",
@@ -30,10 +28,8 @@ export default function RootLayout({
       lang="en"
       className={`${jost.variable} ${cormorant.variable} dark h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#080818] text-zinc-50">
-        <CloudBackground />
+      <body className="min-h-full flex flex-col bg-[#201d28] text-zinc-50">
         {children}
-        <CustomCursor />
       </body>
     </html>
   )
