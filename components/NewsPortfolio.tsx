@@ -22,6 +22,7 @@ export default function NewsPortfolio({ onReturnToIntro }: { onReturnToIntro?: (
   const [searchOpen, setSearchOpen] = useState(false)
   const articleRef = useRef<HTMLElement>(null)
   const workspaceRef = useRef<HTMLDivElement>(null)
+  const listRef = useRef<HTMLElement>(null)
   const searchRef = useRef<HTMLInputElement>(null)
   const current = sections.find(item => item.id === section)!
   const category = filters.section === section ? filters.category : "All"
@@ -32,15 +33,29 @@ export default function NewsPortfolio({ onReturnToIntro }: { onReturnToIntro?: (
 
   const selectStory = (id: string) => {
     setSelection(id)
-    requestAnimationFrame(() => articleRef.current?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth", block: "start" }))
+    requestAnimationFrame(() => {
+      articleRef.current?.scrollTo({ top: 0, behavior: "instant" })
+      // Scroll only the mobile reading pane. scrollIntoView also moves the
+      // outer intro timeline and can make the entire portfolio inert.
+      const workspace = workspaceRef.current
+      const article = articleRef.current
+      if (workspace && article && window.matchMedia("(max-width: 760px)").matches) {
+        workspace.scrollTo({ top: workspace.scrollTop + article.getBoundingClientRect().top - workspace.getBoundingClientRect().top, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" })
+      }
+    })
   }
   const navigate = (id: SectionId) => {
-    window.location.hash = id
+    if (window.location.hash !== `#${id}`) {
+      window.history.pushState(null, "", `#${id}`)
+      window.dispatchEvent(new HashChangeEvent("hashchange"))
+    }
     setFilters({ section: id, category: "All", query: "" })
     setSelection("")
-    if (workspaceRef.current && window.scrollY > workspaceRef.current.offsetTop) {
-      requestAnimationFrame(() => workspaceRef.current?.scrollIntoView({ block: "start" }))
-    }
+    requestAnimationFrame(() => {
+      workspaceRef.current?.scrollTo({ top: 0, behavior: "instant" })
+      listRef.current?.scrollTo({ top: 0, behavior: "instant" })
+      articleRef.current?.scrollTo({ top: 0, behavior: "instant" })
+    })
   }
   const step = (direction: number) => navigate(sections[(sections.findIndex(item => item.id === section) + direction + sections.length) % sections.length].id)
 
@@ -49,7 +64,7 @@ export default function NewsPortfolio({ onReturnToIntro }: { onReturnToIntro?: (
       <main className="news-paper" aria-label="Laila El Attar’s portfolio">
         <header className="news-masthead">
           {onReturnToIntro ? <button type="button" className="news-edition news-return-intro" onClick={onReturnToIntro}>← Back to the couch</button> : <span className="news-edition">The personal edition</span>}
-          <a href="#about-me" className="news-name">Laila El Attar</a>
+          <a href="#about-me" className="news-name" onClick={event => { event.preventDefault(); navigate("about-me") }}>Laila El Attar</a>
           <div className="news-header-actions">
             <a className="news-header-link" href="/Laila El attar Resume.pdf" target="_blank" rel="noopener noreferrer">Résumé <ArrowUpRight size={12} aria-hidden="true" /></a>
           <button type="button" className="news-search-toggle" aria-expanded={searchOpen} aria-label={searchOpen ? "Close search" : "Search this section"} onClick={() => { setSearchOpen(!searchOpen); if (searchOpen) setFilters({ section, category, query: "" }); else requestAnimationFrame(() => searchRef.current?.focus()) }}>
@@ -71,7 +86,7 @@ export default function NewsPortfolio({ onReturnToIntro }: { onReturnToIntro?: (
             <p className="news-small-label">Browse</p>
             {categories.map(item => <button type="button" key={item} aria-pressed={category === item} onClick={() => setFilters({ section, category: item, query })}>{item}<span aria-hidden="true">{category === item ? "●" : ""}</span></button>)}
           </aside>
-          <section className="news-story-list" aria-label={`${current.label} stories`}>
+          <section ref={listRef} className="news-story-list" aria-label={`${current.label} stories`}>
             {filtered.length ? filtered.map(item => <button type="button" className="news-story" key={item.id} aria-controls="selected-article" aria-pressed={story?.id === item.id} onClick={() => selectStory(item.id)}>
               {item.image && !item.experienceType ? <div className="news-thumb"><Image src={item.image} alt="" fill sizes="(max-width: 760px) 130px, (max-width: 1000px) 140px, 220px" /></div> : <div className="news-type-thumb news-organization-thumb" aria-hidden="true">{item.organization ?? item.source}</div>}
               <div>

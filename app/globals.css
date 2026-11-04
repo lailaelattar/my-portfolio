@@ -242,7 +242,11 @@
 .reader-journey[data-entered=true] .reader-portfolio { pointer-events: auto; }
 .reader-journey .news-return-intro:focus-visible { outline: 2px solid var(--primary); outline-offset: 4px; }
 .news-return-intro { justify-self: start; padding: 10px 0; text-align: left; }
-@keyframes reader-idle { 0%, 100% { transform: translateY(0) scaleY(1); } 50% { transform: translateY(-1.2px) scaleY(1.008); } }
+@keyframes reader-idle {
+  0%, 100% { transform: translateY(0) rotate(0deg) scaleY(1); }
+  30% { transform: translateY(-1.8px) rotate(-.45deg) scaleY(1.012); }
+  65% { transform: translateY(-.6px) rotate(.35deg) scaleY(1.004); }
+}
 @media (max-width: 760px) {
   .reader-stage { width: 42vw; min-width: 0; }
   .reader-portfolio .news-workspace { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior-y: auto; }
@@ -263,17 +267,22 @@
 .reader-stage > img { position: relative; z-index: 1; }
 .reader-cast-shadow { position: absolute; z-index: 0; left: 9%; right: -5%; bottom: 4%; height: 12%; background: #493b2d32; border-radius: 50%; filter: blur(8px); transform: translate(8px, 8px) rotate(-9deg); }
 .reader-pages { position: absolute; z-index: 3; inset: 0; perspective: 850px; perspective-origin: 48% 34%; opacity: var(--reader-page-turn-opacity, 1); }
-.reader-paper-turn { position: absolute; inset: 0; transform-origin: 48% 34%; animation: reader-turn-page 8s ease-in-out infinite; will-change: transform; }
+.reader-paper-turn { position: absolute; inset: 0; transform-origin: 48.4% 22.2%; animation: reader-turn-page 8s ease-in-out infinite; will-change: transform; }
 .reader-paper-turn svg { display: block; width: 100%; height: 100%; filter: drop-shadow(4px 2px 3px #44342525); }
-.reader-grip { position: absolute; inset: 0; z-index: 4; clip-path: polygon(58% 29%, 64% 27%, 66% 35%, 63% 40%, 58% 37%); }
-.reader-journey[data-moving=true] .reader-paper-turn { animation-play-state: paused; }
+.reader-grip { position: absolute; inset: 0; z-index: 4; clip-path: polygon(58% 29%, 64% 27%, 66% 35%, 63% 40%, 58% 37%); transform-origin: 61% 36%; animation: reader-adjust-grip 8s ease-in-out infinite; }
+.reader-journey[data-moving=true] .reader-paper-turn, .reader-journey[data-moving=true] .reader-grip { animation-play-state: paused; }
 .reader-portfolio .news-paper::after { content: ''; position: absolute; pointer-events: none; z-index: 30; inset: 0; border-radius: inherit; box-shadow: inset 3px 0 5px #fff5, inset -3px 0 6px #77604414; }
 @keyframes reader-turn-page {
   0%, 25% { transform: rotateY(0deg); opacity: 0; }
   32%, 42% { transform: rotateY(0deg); opacity: 1; }
-  62% { transform: rotateY(-155deg) translateX(-2px); opacity: 1; }
-  68% { transform: rotateY(-175deg); opacity: 0; }
+  62% { transform: rotate3d(-.044, 1, 0, 155deg); opacity: 1; }
+  68% { transform: rotate3d(-.044, 1, 0, 175deg); opacity: 0; }
   70%, 100% { transform: rotateY(0deg); opacity: 0; }
+}
+@keyframes reader-adjust-grip {
+  0%, 28%, 75%, 100% { transform: translate(0, 0) rotate(0deg); }
+  40% { transform: translate(-1px, -.5px) rotate(-1.5deg); }
+  60% { transform: translate(-.5px, .5px) rotate(.75deg); }
 }
 @media (prefers-reduced-motion: reduce) {
   .reader-paper-turn { animation: none; }
