@@ -69,13 +69,13 @@
 .news-header-actions { display: flex; align-items: center; justify-self: end; gap: 22px; }
 .news-header-actions a:hover { color: var(--primary); }
 .news-search-toggle { display: grid; place-items: center; padding: 10px; }
-.news-sections { flex-shrink: 0; position: sticky; top: 0; z-index: 20; background: var(--background); display: flex; border-bottom: 2px solid #8a8178; min-height: 50px; }
+.news-sections { flex-shrink: 0; position: sticky; top: 0; z-index: 20; background: #302d29; color: #f5eee5; display: flex; border-bottom: 2px solid #201e1b; min-height: 50px; }
 .news-nav-step { flex: 0 0 40px; display: grid; place-items: center; }
 .news-section-links { min-width: 0; flex: 1; display: flex; align-items: stretch; overflow-x: auto; scrollbar-width: thin; }
 .news-section-links > a { flex: 1 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 26px; padding: 11px 16px; font-family: var(--font-news-headline), Arial, sans-serif; text-transform: uppercase; font-size: 12px; letter-spacing: .07em; }
-.news-section-links > a span { font-size: 15px; color: #6f6861; }
+.news-section-links > a span { font-size: 15px; color: #b1a59a; }
 .news-section-links > a:last-child span { display: none; }
-.news-section-links > a[aria-current], .news-section-links > a:hover { color: #a9513e; }
+.news-section-links > a[aria-current], .news-section-links > a:hover { color: #f2b39a; }
 .news-workspace { display: grid; grid-template-columns: 150px minmax(280px, .75fr) minmax(0, 1.25fr); flex: 1; min-height: 0; grid-template-rows: minmax(0, 1fr); align-items: stretch; scroll-margin-top: 52px; }
 .news-topics { overflow-y: auto; overscroll-behavior-y: contain; min-height: 0; padding: 25px 16px; }
 .news-small-label { font-size: 9px; text-transform: uppercase; letter-spacing: .15em; margin-bottom: 22px; color: #706359; }
@@ -203,3 +203,5 @@
   .news-ticker-group > span { font-size: 11px; gap: 16px; }
   .news-ticker-group + .news-ticker-group, .news-ticker-toggle { display: none; }
 }
+
+.news-sections :is(a, button):focus-visible { outline-color: #f2b39a; }

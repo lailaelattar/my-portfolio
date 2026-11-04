@@ -8,7 +8,7 @@ import { sections, stories, type SectionId } from "./news-data"
 
 function readSection(): SectionId {
   const hash = window.location.hash.slice(1)
-  return sections.some(section => section.id === hash) ? hash as SectionId : "work"
+  return sections.some(section => section.id === hash) ? hash as SectionId : "about-me"
 }
 function subscribe(listener: () => void) {
   window.addEventListener("hashchange", listener)
@@ -16,7 +16,7 @@ function subscribe(listener: () => void) {
 }
 
 export default function NewsPortfolio() {
-  const section = useSyncExternalStore(subscribe, readSection, () => "work" as SectionId)
+  const section = useSyncExternalStore(subscribe, readSection, () => "about-me" as SectionId)
   const [selection, setSelection] = useState("")
   const [filters, setFilters] = useState({ section, category: "All", query: "" })
   const [searchOpen, setSearchOpen] = useState(false)
