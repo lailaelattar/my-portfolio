@@ -2,7 +2,7 @@
 Toronto, Canada · Canadian citizen
 laylaattar@live.com | https://linkedin.com/in/laila-el-attar | https://lailaelattar.com
 
-Builder with experience shipping customer-facing software, turning customer research into implemented fixes, and automating operations with AI. Computer Science and Media & Communication Studies graduate combining technical execution with clear communication.
+Software builder with a background in journalism and customer research. Experienced in turning recurring customer and operational problems into shipped tools, implemented fixes, and practical AI workflows.
 
 ## Experience
 
@@ -29,14 +29,18 @@ May 2024 – December 2024
 
 Live calculator: https://www.ioindustries.com/calculator/cameras
 
+### Reporter | The Peninsula Qatar
+June 2023 – August 2023
+
+- Reported and wrote features on culture, society, and general news, drawing on interviews and research to develop clear, audience-focused stories.
+
 ## Education
 
 Bachelor of Science, Computer Science; Bachelor of Arts, Media and Communication Studies
 Western University | September 2021 – May 2026 | GPA: 3.7/4.0 | Dean’s Honour List ×4
 
-## Skills & continued learning
+## Tools & certificates
 
-- **Product & research:** Customer research, root-cause analysis, problem framing, cross-functional delivery, stakeholder communication
 - **Build & analyze:** Python, SQL, React, Node.js, JavaScript, Snowflake, Power BI, Excel, Figma
 - **AI workflows:** Claude, MCP, Gumloop, Parallel AI
 
