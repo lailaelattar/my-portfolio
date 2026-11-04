@@ -44,13 +44,13 @@ export default function NewsPortfolio({ onReturnToIntro }: { onReturnToIntro?: (
       }
     })
   }
-  const navigate = (id: SectionId) => {
+  const navigate = (id: SectionId, storyId = "") => {
     if (window.location.hash !== `#${id}`) {
       window.history.pushState(null, "", `#${id}`)
       window.dispatchEvent(new HashChangeEvent("hashchange"))
     }
     setFilters({ section: id, category: "All", query: "" })
-    setSelection("")
+    setSelection(storyId)
     requestAnimationFrame(() => {
       workspaceRef.current?.scrollTo({ top: 0, behavior: "instant" })
       listRef.current?.scrollTo({ top: 0, behavior: "instant" })
@@ -104,6 +104,15 @@ export default function NewsPortfolio({ onReturnToIntro }: { onReturnToIntro?: (
               {story.date && <p className="news-dateline">{story.date}</p>}
               <p className="news-deck">{story.summary}</p>
               <div className="news-article-body">{story.paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}</div>
+              {story.highlights && <section className="news-more news-selected-work" aria-label="Selected work">
+                <h2>Start with the work</h2>
+                <div>{story.highlights.map(item => <button type="button" key={item.storyId} onClick={() => navigate(item.section, item.storyId)}>
+                  <h3>{item.label}</h3><span>{item.detail}</span><ArrowUpRight size={17} aria-hidden="true" />
+                </button>)}</div>
+              </section>}
+              {story.caseStudy && <div className="news-case-study">{story.caseStudy.map(part => <section key={part.heading}>
+                <h2>{part.heading}</h2><p>{part.text}</p>
+              </section>)}</div>}
               {story.tags && <ul className="news-tags" aria-label="Skills and tools">{story.tags.map(tag => <li key={tag}>{tag}</li>)}</ul>}
               {story.link && <a className="news-read-link" href={story.link} target={story.link.startsWith("http") || /\.(pdf|mov)$/.test(story.link) ? "_blank" : undefined} rel="noopener noreferrer">{story.linkLabel ?? "Read more"}<ArrowUpRight size={17} aria-hidden="true" /></a>}
               {filtered.length > 1 && <section className="news-more" aria-label="More in this section">
