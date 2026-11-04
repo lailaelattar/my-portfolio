@@ -3,8 +3,13 @@
 import { useRef, useState, useSyncExternalStore } from "react"
 import Image from "next/image"
 import PersonalityTicker from "./PersonalityTicker"
-import { ArrowUpRight, ChevronLeft, ChevronRight, Search, X } from "lucide-react"
+import { ArrowUpRight, ChevronLeft, ChevronRight, FileText, Laptop, Mail, Search, X } from "lucide-react"
 import { sections, stories, type SectionId } from "./news-data"
+
+function ContactIcon({ kind }: { kind: "email" | "linkedin" | "resume" }) {
+  const Icon = { email: Mail, linkedin: Laptop, resume: FileText }[kind]
+  return <Icon size={30} strokeWidth={1.5} aria-hidden="true" />
+}
 
 function readSection(): SectionId {
   const hash = window.location.hash.slice(1)
@@ -66,7 +71,7 @@ export default function NewsPortfolio({ onReturnToIntro }: { onReturnToIntro?: (
           {onReturnToIntro ? <button type="button" className="news-edition news-return-intro" onClick={onReturnToIntro}>← Back to the couch</button> : <span className="news-edition">The personal edition</span>}
           <a href="#about-me" className="news-name" onClick={event => { event.preventDefault(); navigate("about-me") }}>Laila El Attar</a>
           <div className="news-header-actions">
-            <a className="news-header-link" href="/Laila El attar Resume.pdf" target="_blank" rel="noopener noreferrer">Résumé <ArrowUpRight size={12} aria-hidden="true" /></a>
+            <a className="news-header-link" href="/Laila El attar Resume.pdf" target="_blank" rel="noopener noreferrer"><FileText size={14} aria-hidden="true" />Résumé <ArrowUpRight size={12} aria-hidden="true" /></a>
           <button type="button" className="news-search-toggle" aria-expanded={searchOpen} aria-label={searchOpen ? "Close search" : "Search this section"} onClick={() => { setSearchOpen(!searchOpen); if (searchOpen) setFilters({ section, category, query: "" }); else requestAnimationFrame(() => searchRef.current?.focus()) }}>
             {searchOpen ? <X size={18} /> : <Search size={18} />}
           </button>
@@ -88,7 +93,7 @@ export default function NewsPortfolio({ onReturnToIntro }: { onReturnToIntro?: (
           </aside>
           <section ref={listRef} className="news-story-list" aria-label={`${current.label} stories`}>
             {filtered.length ? filtered.map(item => <button type="button" className="news-story" key={item.id} aria-controls="selected-article" aria-pressed={story?.id === item.id} onClick={() => selectStory(item.id)}>
-              {item.image && !item.experienceType ? <div className="news-thumb"><Image src={item.image} alt="" fill sizes="(max-width: 760px) 130px, (max-width: 1000px) 140px, 220px" /></div> : <div className="news-type-thumb news-organization-thumb" aria-hidden="true">{item.organization ?? item.source}</div>}
+              {item.icon ? <div className="news-contact-thumb" aria-hidden="true"><ContactIcon kind={item.icon} /></div> : item.image && !item.experienceType ? <div className="news-thumb"><Image src={item.image} alt="" fill sizes="(max-width: 760px) 130px, (max-width: 1000px) 140px, 220px" /></div> : <div className="news-type-thumb news-organization-thumb" aria-hidden="true">{item.organization ?? item.source}</div>}
               <div>
                 {item.experienceType && <div className="news-experience-meta"><span>{item.experienceType}</span>{item.date && <span>{item.date}</span>}</div>}
                 <h2>{item.role ?? item.title}</h2>{item.date && !item.experienceType && <span className="news-story-source">{item.date}</span>}<p>{item.summary}</p><span className="news-story-source">{item.source}</span>
@@ -98,12 +103,21 @@ export default function NewsPortfolio({ onReturnToIntro }: { onReturnToIntro?: (
           </section>
           <article key={`${section}-${story?.id ?? "empty"}`} id="selected-article" ref={articleRef} className="news-article" aria-label="Selected story" tabIndex={0}>
             {story ? <div key={`${section}-${story.id}`} className="news-article-content">
+              {story.icon && <div className="news-contact-badge"><ContactIcon kind={story.icon} /></div>}
               {story.image && !story.experienceType && <figure className={`news-hero-image ${story.id === "profile" ? "news-portrait" : ""}`}><Image src={story.image} alt={story.imageAlt ?? story.source} fill sizes="(max-width: 760px) 100vw, 65vw" priority={story.id === "lens"} /></figure>}
               <div className="news-story-meta"><span>{story.experienceType ?? story.category}</span><span>{story.source}</span></div>
               <h1>{story.role ?? story.title}</h1>
               {story.date && <p className="news-dateline">{story.date}</p>}
               <p className="news-deck">{story.summary}</p>
               <div className="news-article-body">{story.paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}</div>
+              {story.id === "profile" && <nav className="news-contact-shortcuts" aria-label="Connect with Laila">
+                {["linkedin", "resume", "email"].map(id => {
+                  const item = stories.contact.find(contact => contact.id === id)!
+                  return <a key={id} href={item.link} target={id === "email" ? undefined : "_blank"} rel="noopener noreferrer">
+                    <span className="news-contact-badge"><ContactIcon kind={item.icon!} /></span><span>{item.source}</span>
+                  </a>
+                })}
+              </nav>}
               {story.highlights && <section className="news-more news-selected-work" aria-label="Selected work">
                 <h2>Start with the work</h2>
                 <div>{story.highlights.map(item => <button type="button" key={item.storyId} onClick={() => navigate(item.section, item.storyId)}>
@@ -125,7 +139,7 @@ export default function NewsPortfolio({ onReturnToIntro }: { onReturnToIntro?: (
             </div> : <div className="news-empty"><p>Select another topic or clear your search to continue reading.</p></div>}
           </article>
         </div>
-        <footer className="news-footer"><span>Laila El Attar / Portfolio</span><a href="mailto:laylaattar@live.com">laylaattar@live.com <ArrowUpRight size={11} aria-hidden="true" /></a></footer>
+        <footer className="news-footer"><span>Laila El Attar / Portfolio</span><a href="mailto:laylaattar@live.com"><Mail size={12} aria-hidden="true" />laylaattar@live.com <ArrowUpRight size={11} aria-hidden="true" /></a></footer>
       </main>
     </div>
   )

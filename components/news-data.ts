@@ -3,6 +3,7 @@ export type Story = {
   paragraphs: string[]; image?: string; imageAlt?: string; date?: string;
   experienceType?: "Work" | "Extracurricular"; role?: string; organization?: string;
   link?: string; linkLabel?: string; tags?: string[];
+  icon?: "email" | "linkedin" | "resume";
   caseStudy?: { heading: string; text: string }[];
   highlights?: { section: SectionId; storyId: string; label: string; detail: string }[];
 }
@@ -49,8 +50,8 @@ export const stories: Record<SectionId, Story[]> = {
     { id: "pendo", title: "Becoming an AI-native Product Manager — Pendo Learning Lab", category: "Learning", source: "Pendo.io", date: "Issued November 2026", summary: "Becoming an AI-native Product Manager · Pendo Learning Lab.", paragraphs: ["Completed Becoming an AI-native Product Manager through Pendo Learning Lab."], link: "https://www.pendo.io/learninglab/certificates/cmvbmc2mz00122ylopk0rwmi8/", linkLabel: "View Pendo credential" },
   ],
   contact: [
-    { id: "email", title: "Let’s start a conversation", category: "Connect", source: "Email", summary: "For opportunities, collaborations, or a simple hello.", paragraphs: ["Interested in my work or have a project in mind? I’d love to hear from you.", "You can reach me at laylaattar@live.com."], link: "mailto:laylaattar@live.com", linkLabel: "Write to me" },
-    { id: "linkedin", title: "Stay in touch", category: "Connect", source: "LinkedIn", summary: "Connect with me on LinkedIn.", paragraphs: ["Find my professional background and connect with me on LinkedIn."], link: "https://linkedin.com/in/laila-el-attar", linkLabel: "Open LinkedIn" },
-    { id: "resume", title: "The experience, in one document", category: "Connect", source: "Résumé", summary: "Experience in shipped software, customer research, and hands-on AI workflows.", paragraphs: ["My résumé brings together work at Opendoor, Hydro One, and IO Industries, plus my background in Computer Science and Media & Communication Studies."], link: "/Laila El attar Resume.pdf", linkLabel: "Open résumé" },
+    { id: "email", icon: "email", title: "Let’s start a conversation", category: "Connect", source: "Email", summary: "For opportunities, collaborations, or a simple hello.", paragraphs: ["Interested in my work or have a project in mind? I’d love to hear from you.", "You can reach me at laylaattar@live.com."], link: "mailto:laylaattar@live.com", linkLabel: "Write to me" },
+    { id: "linkedin", icon: "linkedin", title: "Stay in touch", category: "Connect", source: "LinkedIn", summary: "Connect with me on LinkedIn.", paragraphs: ["Find my professional background and connect with me on LinkedIn."], link: "https://linkedin.com/in/laila-el-attar", linkLabel: "Open LinkedIn" },
+    { id: "resume", icon: "resume", title: "The experience, in one document", category: "Connect", source: "Résumé", summary: "Experience in shipped software, customer research, and hands-on AI workflows.", paragraphs: ["My résumé brings together work at Opendoor, Hydro One, and IO Industries, plus my background in Computer Science and Media & Communication Studies."], link: "/Laila El attar Resume.pdf", linkLabel: "Open résumé" },
   ],
 }
