@@ -205,3 +205,24 @@
 }
 
 .news-sections :is(a, button):focus-visible { outline-color: #f2b39a; }
+
+/* Slightly denser desktop edition; keep phone text at its readable size. */
+@media (min-width: 761px) {
+  .news-paper { min-height: 640px; }
+  .news-masthead { min-height: 96px; padding: 16px 32px; }
+  .news-name { font-size: clamp(36px, 3.8vw, 58px); }
+  .news-sections { min-height: 46px; }
+  .news-section-links > a { padding-top: 10px; padding-bottom: 10px; font-size: 11px; }
+  .news-workspace { grid-template-columns: 140px minmax(260px, .75fr) minmax(0, 1.25fr); }
+  .news-topics { padding: 20px 12px; }
+  .news-story { gap: 16px; padding: 18px 16px; }
+  .news-story h2 { font-size: clamp(12px, 1vw, 16px); }
+  .news-article { padding: 24px clamp(22px, 2.5vw, 48px) 36px; }
+  .news-hero-image { height: clamp(240px, 28vw, 420px); }
+  .news-article h1 { font-size: clamp(26px, 2.6vw, 48px); margin-bottom: 18px; }
+  .news-deck { font-size: 18px; margin-bottom: 20px; }
+  .news-article-body { font-size: 17px; line-height: 1.65; }
+}
+@media (min-width: 761px) and (max-width: 1000px) {
+  .news-workspace { grid-template-columns: 105px minmax(220px, .9fr) minmax(0, 1.1fr); }
+}
