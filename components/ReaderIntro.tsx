@@ -2,7 +2,6 @@
 
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react"
 import Image from "next/image"
-import { ArrowDown, ArrowUpRight } from "lucide-react"
 import NewsPortfolio from "./NewsPortfolio"
 import { sections } from "./news-data"
 
@@ -24,17 +23,11 @@ export default function ReaderIntro() {
   const [entered, setEntered] = useState(false)
   const journey = useRef<HTMLDivElement>(null)
   const stage = useRef<HTMLDivElement>(null)
-  const portfolio = useRef<HTMLDivElement>(null)
   const enteredRef = useRef(false)
 
-  const skip = useCallback(() => {
-    if (!journey.current) return
-    window.scrollTo({ top: journey.current.offsetTop + journey.current.offsetHeight - window.innerHeight, behavior: "instant" })
-    requestAnimationFrame(() => requestAnimationFrame(() => portfolio.current?.querySelector<HTMLAnchorElement>(".news-name")?.focus({ preventScroll: true })))
-  }, [])
   const returnToReader = useCallback(() => {
     window.scrollTo({ top: journey.current?.offsetTop ?? 0, behavior: reduced ? "instant" : "smooth" })
-    requestAnimationFrame(() => journey.current?.querySelector<HTMLButtonElement>(".reader-skip")?.focus({ preventScroll: true }))
+    requestAnimationFrame(() => journey.current?.focus({ preventScroll: true }))
   }, [reduced])
 
   useEffect(() => {
@@ -48,7 +41,7 @@ export default function ReaderIntro() {
       const range = Math.max(host.offsetHeight - height, 0)
       const progress = reduced || range === 0 ? 1 : clamp((window.scrollY - host.offsetTop) / range)
       const eased = smooth(progress)
-      const stageWidth = stage.current?.offsetWidth ?? width * .43
+      const stageWidth = stage.current?.offsetWidth ?? width * .22
       const stageHeight = stage.current?.offsetHeight ?? stageWidth * 1145 / 1374
       // Aim at the front page in the approved comic illustration.
       const focusX = width / 2 + stageWidth * .06
@@ -64,7 +57,6 @@ export default function ReaderIntro() {
       host.style.setProperty("--reader-art-opacity", String(1 - blend))
       host.style.setProperty("--reader-page-opacity", String(blend))
       host.style.setProperty("--reader-page-scale", String(1 + .06 * (1 - blend)))
-      host.style.setProperty("--reader-hint-opacity", String(1 - smooth(clamp(progress / .2))))
       host.dataset.moving = String(progress > .01)
       host.dataset.progress = progress.toFixed(3)
       const nextEntered = progress >= .995
@@ -111,26 +103,22 @@ export default function ReaderIntro() {
 
   const introActive = ready && !entered && !reduced
   return (
-    <div className="reader-journey" ref={journey} data-entered={entered || reduced}>
+    <div className="reader-journey" ref={journey} tabIndex={-1} data-entered={entered || reduced}>
       <div className="reader-pin">
         <div className="reader-visual" aria-hidden="true">
           <div className="reader-camera">
             <div className="reader-stage" ref={stage}>
-              <Image src="/illustrations/newspaper-reader.png" alt="" width={1374} height={1145} priority sizes="(max-width: 760px) 90vw, 760px" quality={85} />
-              <div className="reader-breath"><Image src="/illustrations/newspaper-reader.png" alt="" width={1374} height={1145} sizes="(max-width: 760px) 90vw, 760px" quality={85} /></div>
+              <Image src="/illustrations/newspaper-reader-cartoon.png" alt="" width={1374} height={1145} priority sizes="(max-width: 760px) 90vw, 760px" quality={85} />
+              <div className="reader-breath"><Image src="/illustrations/newspaper-reader-cartoon.png" alt="" width={1374} height={1145} sizes="(max-width: 760px) 90vw, 760px" quality={85} /></div>
             </div>
           </div>
         </div>
-        <div className="reader-intro-controls" inert={ready && (entered || reduced)} aria-hidden={entered || reduced}>
-          <h1 className="reader-wordmark">Laila El Attar</h1>
-          <button type="button" className="reader-skip" onClick={skip}>Skip intro <ArrowUpRight size={14} aria-hidden="true" /></button>
-          <div className="reader-invitation"><p>Take a closer look.</p><span>Scroll to open the newspaper</span><ArrowDown size={18} aria-hidden="true" /></div>
-        </div>
-        <div className="reader-portfolio" ref={portfolio} inert={introActive} aria-hidden={introActive}>
+        <h1 className="sr-only" aria-hidden={entered || reduced}>Laila El Attar — scroll down to enter the portfolio</h1>
+        <div className="reader-portfolio" inert={introActive} aria-hidden={introActive}>
           <NewsPortfolio onReturnToIntro={reduced ? undefined : returnToReader} />
         </div>
       </div>
-      <noscript><style>{`.reader-journey{height:auto}.reader-pin{position:relative;height:auto;overflow:visible}.reader-visual,.reader-intro-controls,.news-return-intro{display:none}.reader-portfolio{position:relative;opacity:1;transform:none;pointer-events:auto}`}</style></noscript>
+      <noscript><style>{`.reader-journey{height:auto}.reader-pin{position:relative;height:auto;overflow:visible}.reader-visual,.news-return-intro{display:none}.reader-portfolio{position:relative;opacity:1;transform:none;pointer-events:auto}`}</style></noscript>
     </div>
   )
 }
