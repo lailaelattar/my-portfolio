@@ -226,3 +226,48 @@
 @media (min-width: 761px) and (max-width: 1000px) {
   .news-workspace { grid-template-columns: 105px minmax(220px, .9fr) minmax(0, 1.1fr); }
 }
+
+
+/* Comic opening: scroll the camera into the paper, then read the live edition. */
+.reader-journey { height: 280svh; position: relative; background: var(--background); --reader-page-opacity: 0; --reader-art-opacity: 1; --reader-page-scale: 1.06; --reader-hint-opacity: 1; }
+.reader-pin { position: sticky; top: 0; width: 100%; height: 100svh; overflow: hidden; isolation: isolate; }
+.reader-visual, .reader-camera { position: absolute; inset: 0; }
+.reader-visual { opacity: var(--reader-art-opacity); pointer-events: none; }
+.reader-camera { transform-origin: var(--reader-focus-x, 50%) var(--reader-focus-y, 40%); transform: translate(var(--reader-x, 0px), var(--reader-y, 0px)) scale(var(--reader-zoom, 1)) rotate(var(--reader-angle, 0deg)); will-change: transform; }
+.reader-stage { position: absolute; left: 50%; top: 50%; width: clamp(340px, 43vw, 760px); aspect-ratio: 1374 / 1145; transform: translate(-50%, -50%); }
+.reader-stage img { width: 100%; height: 100%; object-fit: contain; }
+.reader-breath { position: absolute; inset: 0; clip-path: polygon(25% 0, 73% 0, 73% 48%, 64% 54%, 26% 54%); transform-origin: 50% 54%; animation: reader-idle 5.5s ease-in-out infinite; }
+.reader-journey[data-moving=true] .reader-breath { animation-play-state: paused; }
+.reader-intro-controls { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
+.reader-wordmark, .reader-invitation { opacity: var(--reader-hint-opacity); }
+.reader-journey[data-entered=true] .reader-intro-controls { visibility: hidden; }
+.reader-wordmark { position: absolute; top: 32px; left: 36px; font-family: var(--font-news-masthead), Georgia, serif; font-size: 27px; }
+.reader-skip { border: 1px solid #b5aaa0; border-radius: 2px; background: #eae4def2; pointer-events: auto; position: absolute; top: 26px; right: 30px; display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-jost), Arial, sans-serif; font-size: 12px; padding: 12px; }
+.reader-skip:hover, .news-return-intro:hover { color: var(--primary); }
+.reader-invitation { position: absolute; left: 50%; bottom: 36px; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; width: max-content; max-width: 90%; }
+.reader-invitation p { font-family: var(--font-cormorant), Georgia, serif; font-size: clamp(25px, 3vw, 36px); }
+.reader-invitation span { font-family: var(--font-jost), Arial, sans-serif; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; }
+.reader-portfolio { z-index: 2; position: absolute; inset: 0; opacity: var(--reader-page-opacity); transform: scale(var(--reader-page-scale)); transform-origin: center; pointer-events: none; }
+.reader-journey[data-entered=true] .reader-portfolio { pointer-events: auto; }
+.reader-journey :is(.reader-skip, .news-return-intro):focus-visible { outline: 2px solid var(--primary); outline-offset: 4px; }
+.news-return-intro { justify-self: start; padding: 10px 0; text-align: left; }
+@keyframes reader-idle { 0%, 100% { transform: translateY(0) scaleY(1); } 50% { transform: translateY(-.7px) scaleY(1.005); } }
+@media (max-width: 760px) {
+  .reader-stage { width: 88vw; min-width: 0; }
+  .reader-wordmark { top: 24px; left: 22px; font-size: 22px; }
+  .reader-skip { top: 17px; right: 12px; font-size: 11px; }
+  .reader-invitation { bottom: 42px; }
+  .reader-portfolio .news-workspace { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior-y: auto; }
+  .reader-portfolio .news-workspace > * { flex-shrink: 0; }
+  .reader-portfolio .news-story-list { overscroll-behavior-y: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reader-journey { height: auto; min-height: 100svh; }
+  .reader-pin { position: relative; height: auto; overflow: visible; }
+  .reader-visual, .reader-intro-controls { display: none; }
+  .reader-portfolio { position: relative; opacity: 1; transform: none; pointer-events: auto; }
+  .reader-breath { animation: none; }
+}
+
+.reader-portfolio .news-screen { min-height: 0; height: 100%; }
+.reader-portfolio .news-paper { height: 100svh; min-height: 0; }

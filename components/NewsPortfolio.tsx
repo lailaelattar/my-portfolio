@@ -15,7 +15,7 @@ function subscribe(listener: () => void) {
   return () => window.removeEventListener("hashchange", listener)
 }
 
-export default function NewsPortfolio() {
+export default function NewsPortfolio({ onReturnToIntro }: { onReturnToIntro?: () => void }) {
   const section = useSyncExternalStore(subscribe, readSection, () => "about-me" as SectionId)
   const [selection, setSelection] = useState("")
   const [filters, setFilters] = useState({ section, category: "All", query: "" })
@@ -48,7 +48,7 @@ export default function NewsPortfolio() {
     <div className="news-screen">
       <main className="news-paper" aria-label="Laila El Attar’s portfolio">
         <header className="news-masthead">
-          <span className="news-edition">The personal edition</span>
+          {onReturnToIntro ? <button type="button" className="news-edition news-return-intro" onClick={onReturnToIntro}>← Back to the couch</button> : <span className="news-edition">The personal edition</span>}
           <a href="#about-me" className="news-name">Laila El Attar</a>
           <div className="news-header-actions">
             <a className="news-header-link" href="/Laila El attar Resume.pdf" target="_blank" rel="noopener noreferrer">Résumé <ArrowUpRight size={12} aria-hidden="true" /></a>
