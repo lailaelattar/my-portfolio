@@ -1,7 +1,8 @@
 "use client"
 
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react"
-import Image from "next/image"
+import { ArrowDown } from "lucide-react"
+import ReaderIllustration from "./ReaderIllustration"
 import NewsPortfolio from "./NewsPortfolio"
 import { sections } from "./news-data"
 
@@ -21,6 +22,7 @@ export default function ReaderIntro() {
   const ready = useSyncExternalStore(subscribeReady, readySnapshot, serverSnapshot)
   const reduced = useSyncExternalStore(subscribeMotion, motionSnapshot, serverSnapshot)
   const [entered, setEntered] = useState(false)
+  const [showHint, setShowHint] = useState(false)
   const journey = useRef<HTMLDivElement>(null)
   const stage = useRef<HTMLDivElement>(null)
   const enteredRef = useRef(false)
@@ -115,6 +117,22 @@ export default function ReaderIntro() {
     }
   }, [ready, reduced])
 
+  useEffect(() => {
+    if (!ready || reduced) return
+    const isAtStart = () => window.scrollY <= (journey.current?.offsetTop ?? 0) + 8
+    const timer = window.setTimeout(() => { if (isAtStart()) setShowHint(true) }, 10_000)
+    const dismiss = () => {
+      if (!isAtStart()) { window.clearTimeout(timer); setShowHint(false) }
+    }
+    window.addEventListener("scroll", dismiss, { passive: true })
+    return () => { window.clearTimeout(timer); window.removeEventListener("scroll", dismiss) }
+  }, [ready, reduced])
+
+  const openNewspaper = () => {
+    const host = journey.current
+    if (host) window.scrollTo({ top: host.offsetTop + host.offsetHeight - window.innerHeight, behavior: reduced ? "instant" : "smooth" })
+  }
+
   const introActive = ready && !entered && !reduced
   return (
     <div className="reader-journey" ref={journey} tabIndex={-1} data-entered={entered || reduced}>
@@ -123,24 +141,15 @@ export default function ReaderIntro() {
           <div className="reader-camera">
             <div className="reader-stage" ref={stage}>
               <div className="reader-cast-shadow" />
-              <Image src="/illustrations/newspaper-reader-cartoon.png" alt="" width={1374} height={1145} priority sizes="(max-width: 760px) 90vw, 760px" quality={85} />
-              <div className="reader-breath"><Image src="/illustrations/newspaper-reader-cartoon.png" alt="" width={1374} height={1145} sizes="(max-width: 760px) 90vw, 760px" quality={85} /></div>
-              <div className="reader-pages">
-                <div className="reader-paper-turn">
-                  <svg viewBox="0 0 1374 1145" fill="none">
-                    <path d="M665 254L896 145L860 472L653 525Z" fill="#e9ddc8" stroke="#463c30" strokeWidth="2" />
-                    <path d="M695 262L872 183M690 280L868 201M686 297L865 220" stroke="#786b5c" strokeWidth="5" />
-                    <path d="M682 315L860 240L854 265L680 339Z" fill="#8e7e6a" />
-                    <path d="M679 350L754 317L743 411L675 439Z" fill="#c1b39d" />
-                    <path d="M768 311L850 276M767 330L848 296M765 350L846 316M763 370L844 337M761 390L842 357M674 454L838 384M672 473L836 406M670 492L834 427" stroke="#a99a84" strokeWidth="4" />
-                    <path d="M660 266L653 518" stroke="#c7b89f" strokeWidth="6" />
-                  </svg>
-                </div>
-              </div>
-              <div className="reader-grip"><Image src="/illustrations/newspaper-reader-cartoon.png" alt="" width={1374} height={1145} sizes="(max-width: 760px) 90vw, 760px" quality={85} /></div>
+              <ReaderIllustration />
             </div>
           </div>
         </div>
+        {showHint && !entered && !reduced && <button className="reader-scroll-hint" type="button" onClick={openNewspaper}>
+          <span className="reader-hint-desktop">Scroll down to open the newspaper</span>
+          <span className="reader-hint-mobile">Swipe up to open the newspaper</span>
+          <ArrowDown size={17} aria-hidden="true" />
+        </button>}
         <h1 className="sr-only" aria-hidden={entered || reduced}>Laila El Attar — scroll down to enter the portfolio</h1>
         <div className="reader-portfolio" inert={introActive} aria-hidden={introActive}>
           <NewsPortfolio onReturnToIntro={reduced ? undefined : returnToReader} />
