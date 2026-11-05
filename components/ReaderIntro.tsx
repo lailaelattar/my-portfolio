@@ -1,7 +1,6 @@
 "use client"
 
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react"
-import { ArrowDown } from "lucide-react"
 import ReaderIllustration from "./ReaderIllustration"
 import NewsPortfolio from "./NewsPortfolio"
 import { sections } from "./news-data"
@@ -63,6 +62,8 @@ export default function ReaderIntro() {
       host.style.setProperty("--reader-zoom", String(Math.pow(finalZoom, eased)))
       host.style.setProperty("--reader-focus-x", `${focusX}px`)
       host.style.setProperty("--reader-focus-y", `${focusY}px`)
+      host.style.setProperty("--reader-hint-left", `${width / 2 - stageWidth * .063}px`)
+      host.style.setProperty("--reader-hint-top", `${height / 2 - stageHeight * .46 - 12}px`)
       host.style.setProperty("--reader-x", `${(width / 2 - focusX) * eased}px`)
       host.style.setProperty("--reader-y", `${(height / 2 - focusY) * eased}px`)
       host.style.setProperty("--reader-angle", `${9 * eased}deg`)
@@ -145,10 +146,8 @@ export default function ReaderIntro() {
             </div>
           </div>
         </div>
-        {showHint && !entered && !reduced && <button className="reader-scroll-hint" type="button" onClick={openNewspaper}>
-          <span className="reader-hint-desktop">Scroll down to open the newspaper</span>
-          <span className="reader-hint-mobile">Swipe up to open the newspaper</span>
-          <ArrowDown size={17} aria-hidden="true" />
+        {showHint && !entered && !reduced && <button className="reader-scroll-hint" type="button" onClick={openNewspaper} aria-label="Open the newspaper. Scroll down, or swipe up on a touch screen, to zoom in." title="Scroll down to zoom in">
+          <span className="reader-hint-mark" aria-hidden="true">!</span><span>Zoom in</span>
         </button>}
         <h1 className="sr-only" aria-hidden={entered || reduced}>Laila El Attar — scroll down to enter the portfolio</h1>
         <div className="reader-portfolio" inert={introActive} aria-hidden={introActive}>

@@ -188,7 +188,7 @@ export default function NewsPortfolio({ onReturnToIntro }: { onReturnToIntro?: (
                 <h2 className="news-subsection-heading">{group.topic}</h2>
                 {group.entries.map(story => <section key={story.id} data-story-id={story.id} className="news-entry" tabIndex={-1} aria-label={story.role ?? story.title}>
                   <div className={story.id === "profile" ? "news-entry-content news-profile-layout" : "news-entry-content"}>
-                    {story.id === "profile" && <figure className="news-profile-photo"><Image src={story.image!} alt="Laila El Attar" fill sizes="(max-width: 760px) 110px, 240px" /></figure>}
+                    {story.id === "profile" && <figure className="news-profile-photo"><Image src={story.image!} alt="Laila El Attar" fill sizes="(max-width: 760px) calc(100vw - 56px), (max-width: 1280px) 45vw, 480px" /></figure>}
                     <div className="news-entry-copy">
                       {story.icon && <div className={story.icon === "electricity" ? "news-entry-symbol" : "news-contact-badge"}><ContactIcon kind={story.icon} /></div>}
                       {story.logo && <div className={`news-article-logo${section === "certifications" ? " news-issuer-logo" : ""}`}><OrganizationLogo story={story} /></div>}

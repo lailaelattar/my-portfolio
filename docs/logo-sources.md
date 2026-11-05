@@ -15,3 +15,5 @@ Logos identify the organizations associated with Laila’s experience and creden
 Project screenshots remain in Projects. Employer logos replace organization-name placeholders in Experience, the Western crest appears in Education, and credential issuers appear in Certificates.
 
 Article logos are centered. Google and Pendo display margins are tightened and their certificate logos use a larger, responsive frame. The cleaned logo PNGs have real alpha transparency and display without a blend-mode workaround or decorative backing boxes.
+
+IO Industries uses a transparent full-name lockup derived from the existing black/red symbol with the image tool, with “IO INDUSTRIES” beneath it, matching the full-logo reference supplied in chat.
