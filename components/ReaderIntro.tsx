@@ -72,7 +72,7 @@ export default function ReaderIntro() {
       host.style.setProperty("--reader-page-turn-opacity", String(1 - smooth(clamp(progress / .12))))
       host.dataset.moving = String(progress > .01)
       host.dataset.progress = progress.toFixed(3)
-      const nextEntered = progress >= .995
+      const nextEntered = progress >= .98
       if (nextEntered !== enteredRef.current) {
         enteredRef.current = nextEntered
         setEntered(nextEntered)
