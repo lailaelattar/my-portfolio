@@ -3,26 +3,25 @@
 import { useEffect, useId, useMemo, useRef, useState, useSyncExternalStore, type MouseEvent } from "react"
 import Image from "next/image"
 import PersonalityTicker from "./PersonalityTicker"
-import { ArrowUpRight, FileText, Laptop, Mail, Search, X } from "lucide-react"
+import { ArrowUpRight, FileText, Laptop, Mail, Search, X, Zap } from "lucide-react"
 import { sections, stories, type SectionId, type Story } from "./news-data"
 
 function OrganizationLogo({ story }: { story: Story }) {
   const clipId = useId()
   const label = `${story.organization ?? story.source} logo`
-  // Existing publication screenshots also contain their original mastheads.
-  // A viewport isolates the mark without including site navigation or adverts.
+  // Trim display margins while keeping original image files unchanged.
   if (story.logoCrop) {
     const [x, y, width, height] = story.logoCrop.viewBox.split(" ").map(Number)
     return <svg viewBox={story.logoCrop.viewBox} role="img" aria-label={label}>
-      <defs><clipPath id={clipId}><rect x={x} y={y} width={width} height={height} /></clipPath></defs>
+      <defs><clipPath id={clipId}>{story.logoCrop.clipPath ? <path d={story.logoCrop.clipPath} /> : <rect x={x} y={y} width={width} height={height} />}</clipPath></defs>
       <image href={story.logo} width={story.logoCrop.width} height={story.logoCrop.height} clipPath={`url(#${clipId})`} />
     </svg>
   }
   return <Image src={story.logo!} alt={label} fill sizes="(max-width: 760px) 120px, 220px" />
 }
 
-function ContactIcon({ kind }: { kind: "email" | "linkedin" | "resume" }) {
-  const Icon = { email: Mail, linkedin: Laptop, resume: FileText }[kind]
+function ContactIcon({ kind }: { kind: NonNullable<Story["icon"]> }) {
+  const Icon = { email: Mail, linkedin: Laptop, resume: FileText, electricity: Zap }[kind]
   return <Icon size={30} strokeWidth={1.5} aria-hidden="true" />
 }
 
@@ -174,7 +173,7 @@ export default function NewsPortfolio({ onReturnToIntro }: { onReturnToIntro?: (
             {groups.map(group => <div className="news-preview-group" data-preview-topic={group.topic} key={group.topic}>
               <h2 className="news-preview-group-heading">{group.topic}</h2>
               {group.entries.map(item => <button type="button" className="news-story" key={item.id} aria-pressed={activeStory === item.id} onClick={() => selectStory(item.id)}>
-                {item.logo ? <div className="news-logo-thumb"><OrganizationLogo story={item} /></div> : item.icon ? <div className="news-contact-thumb" aria-hidden="true"><ContactIcon kind={item.icon} /></div> : item.image && !item.experienceType ? <div className="news-thumb"><Image src={item.image} alt="" fill sizes="(max-width: 760px) 120px, 220px" /></div> : <div className="news-type-thumb news-organization-thumb" aria-hidden="true">{item.organization ?? item.source}</div>}
+                {item.logo ? <div className="news-logo-thumb"><OrganizationLogo story={item} /></div> : item.icon ? <div className={item.icon === "electricity" ? "news-symbol-thumb" : "news-contact-thumb"} aria-hidden="true"><ContactIcon kind={item.icon} /></div> : item.image && !item.experienceType ? <div className="news-thumb"><Image src={item.image} alt="" fill sizes="(max-width: 760px) 120px, 220px" /></div> : <div className="news-type-thumb news-organization-thumb" aria-hidden="true">{item.organization ?? item.source}</div>}
                 <div>
                   {item.experienceType && <div className="news-experience-meta"><span>{item.experienceType}</span>{item.date && <span>{item.date}</span>}</div>}
                   <h3>{item.role ?? item.title}</h3>{item.date && !item.experienceType && <span className="news-story-source">{item.date}</span>}<p>{item.summary}</p><span className="news-story-source">{item.source}</span>
@@ -191,8 +190,8 @@ export default function NewsPortfolio({ onReturnToIntro }: { onReturnToIntro?: (
                   <div className={story.id === "profile" ? "news-entry-content news-profile-layout" : "news-entry-content"}>
                     {story.id === "profile" && <figure className="news-profile-photo"><Image src={story.image!} alt="Laila El Attar" fill sizes="(max-width: 760px) 110px, 240px" /></figure>}
                     <div className="news-entry-copy">
-                      {story.icon && <div className="news-contact-badge"><ContactIcon kind={story.icon} /></div>}
-                      {story.logo && <div className="news-article-logo"><OrganizationLogo story={story} /></div>}
+                      {story.icon && <div className={story.icon === "electricity" ? "news-entry-symbol" : "news-contact-badge"}><ContactIcon kind={story.icon} /></div>}
+                      {story.logo && <div className={`news-article-logo${section === "certifications" ? " news-issuer-logo" : ""}`}><OrganizationLogo story={story} /></div>}
                       {story.id !== "profile" && story.image && !story.experienceType && !(section === "writing" && story.logo) && <figure className="news-hero-image"><Image src={story.image} alt={story.imageAlt ?? story.source} fill sizes="(max-width: 760px) 100vw, 65vw" /></figure>}
                       <div className="news-story-meta"><span>{story.experienceType ?? story.category}</span><span>{story.source}</span></div>
                       <h2 className="news-entry-title">{story.role ?? story.title}</h2>
