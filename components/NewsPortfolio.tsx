@@ -1,10 +1,25 @@
 "use client"
 
-import { useRef, useState, useSyncExternalStore } from "react"
+import { useId, useRef, useState, useSyncExternalStore } from "react"
 import Image from "next/image"
 import PersonalityTicker from "./PersonalityTicker"
 import { ArrowUpRight, ChevronLeft, ChevronRight, FileText, Laptop, Mail, Search, X } from "lucide-react"
-import { sections, stories, type SectionId } from "./news-data"
+import { sections, stories, type SectionId, type Story } from "./news-data"
+
+function OrganizationLogo({ story }: { story: Story }) {
+  const clipId = useId()
+  const label = `${story.organization ?? story.source} logo`
+  // Existing publication screenshots also contain their original mastheads.
+  // A viewport isolates the mark without including site navigation or adverts.
+  if (story.logoCrop) {
+    const [x, y, width, height] = story.logoCrop.viewBox.split(" ").map(Number)
+    return <svg viewBox={story.logoCrop.viewBox} role="img" aria-label={label}>
+      <defs><clipPath id={clipId}><rect x={x} y={y} width={width} height={height} /></clipPath></defs>
+      <image href={story.logo} width={story.logoCrop.width} height={story.logoCrop.height} clipPath={`url(#${clipId})`} />
+    </svg>
+  }
+  return <Image src={story.logo!} alt={label} fill sizes="(max-width: 760px) 120px, 220px" />
+}
 
 function ContactIcon({ kind }: { kind: "email" | "linkedin" | "resume" }) {
   const Icon = { email: Mail, linkedin: Laptop, resume: FileText }[kind]
@@ -93,7 +108,7 @@ export default function NewsPortfolio({ onReturnToIntro }: { onReturnToIntro?: (
           </aside>
           <section ref={listRef} className="news-story-list" aria-label={`${current.label} stories`}>
             {filtered.length ? filtered.map(item => <button type="button" className="news-story" key={item.id} aria-controls="selected-article" aria-pressed={story?.id === item.id} onClick={() => selectStory(item.id)}>
-              {item.icon ? <div className="news-contact-thumb" aria-hidden="true"><ContactIcon kind={item.icon} /></div> : item.image && !item.experienceType ? <div className="news-thumb"><Image src={item.image} alt="" fill sizes="(max-width: 760px) 130px, (max-width: 1000px) 140px, 220px" /></div> : <div className="news-type-thumb news-organization-thumb" aria-hidden="true">{item.organization ?? item.source}</div>}
+              {item.logo ? <div className={`news-logo-thumb${item.logoDark ? " news-logo-dark" : ""}`}><OrganizationLogo story={item} /></div> : item.icon ? <div className="news-contact-thumb" aria-hidden="true"><ContactIcon kind={item.icon} /></div> : item.image && !item.experienceType ? <div className="news-thumb"><Image src={item.image} alt="" fill sizes="(max-width: 760px) 130px, (max-width: 1000px) 140px, 220px" /></div> : <div className="news-type-thumb news-organization-thumb" aria-hidden="true">{item.organization ?? item.source}</div>}
               <div>
                 {item.experienceType && <div className="news-experience-meta"><span>{item.experienceType}</span>{item.date && <span>{item.date}</span>}</div>}
                 <h2>{item.role ?? item.title}</h2>{item.date && !item.experienceType && <span className="news-story-source">{item.date}</span>}<p>{item.summary}</p><span className="news-story-source">{item.source}</span>
@@ -104,7 +119,8 @@ export default function NewsPortfolio({ onReturnToIntro }: { onReturnToIntro?: (
           <article key={`${section}-${story?.id ?? "empty"}`} id="selected-article" ref={articleRef} className="news-article" aria-label="Selected story" tabIndex={0}>
             {story ? <div key={`${section}-${story.id}`} className="news-article-content">
               {story.icon && <div className="news-contact-badge"><ContactIcon kind={story.icon} /></div>}
-              {story.image && !story.experienceType && <figure className={`news-hero-image ${story.id === "profile" ? "news-portrait" : ""}`}><Image src={story.image} alt={story.imageAlt ?? story.source} fill sizes="(max-width: 760px) 100vw, 65vw" priority={story.id === "lens"} /></figure>}
+              {story.logo && <div className={`news-article-logo${story.logoDark ? " news-logo-dark" : ""}`}><OrganizationLogo story={story} /></div>}
+              {story.image && !story.experienceType && !(section === "writing" && story.logo) && <figure className={`news-hero-image ${story.id === "profile" ? "news-portrait" : ""}`}><Image src={story.image} alt={story.imageAlt ?? story.source} fill sizes="(max-width: 760px) 100vw, 65vw" priority={story.id === "lens"} /></figure>}
               <div className="news-story-meta"><span>{story.experienceType ?? story.category}</span><span>{story.source}</span></div>
               <h1>{story.role ?? story.title}</h1>
               {story.date && <p className="news-dateline">{story.date}</p>}
