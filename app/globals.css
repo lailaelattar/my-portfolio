@@ -288,7 +288,7 @@
 .reader-hand-right { transform-origin: 845px 416px; animation: reader-right-grip 8.8s ease-in-out infinite; }
 .reader-inside-pages { opacity: var(--reader-page-turn-opacity, 1); }
 .reader-inner-leaf { transform-origin: 660px 254px; animation: reader-inside-turn 8.8s ease-in-out infinite; }
-.reader-journey[data-moving=true] :is(.reader-head, .reader-hand-left, .reader-hand-right, .reader-inner-leaf, .reader-steam) { animation: none; }
+.reader-journey[data-moving=true] :is(.reader-head, .reader-hand-left, .reader-hand-right, .reader-inner-leaf) { animation: none; }
 .reader-cover-name { font-family: var(--font-news-masthead), Georgia, serif; font-size: 31px; fill: #383531; }
 .reader-cover-small { font-family: var(--font-jost), Arial, sans-serif; font-size: 9px; letter-spacing: .7px; fill: #6b5646; }
 .reader-cover-headline { font-family: var(--font-news-headline), Arial, sans-serif; font-size: 20px; fill: #383531; }
@@ -299,9 +299,6 @@
 .reader-hint-mark { color: #ad5742; font-size: 15px; font-weight: 700; line-height: 1; }
 .reader-scroll-hint:hover { color: #ad5742; }
 .reader-scroll-hint:focus-visible { outline: 2px solid #ad5742; outline-offset: 3px; }
-.reader-steam { transform-box: view-box; opacity: .3; animation: reader-steam-rise 4.7s ease-in-out infinite; }
-.reader-steam-two { animation-duration: 5.3s; animation-delay: -1.8s; }
-@keyframes reader-steam-rise { 0% { transform: translateY(4px); opacity: .08; } 45% { opacity: .5; } 100% { transform: translateY(-13px); opacity: 0; } }
 @keyframes reader-look {
   0%, 15%, 100% { transform: rotate(0deg); }
   36% { transform: translate(2px, 1.5px) rotate(1.3deg); }
@@ -326,7 +323,7 @@
 }
 @keyframes reader-hint-arrive { from { opacity: 0; } to { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) {
-  .reader-head, .reader-hand-left, .reader-hand-right, .reader-inner-leaf, .reader-steam, .reader-scroll-hint { animation: none; }
+  .reader-head, .reader-hand-left, .reader-hand-right, .reader-inner-leaf, .reader-scroll-hint { animation: none; }
   .reader-scroll-hint { display: none; }
 }
 

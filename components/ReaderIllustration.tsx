@@ -27,18 +27,7 @@ export default function ReaderIllustration() {
     </defs>
     <image href={art} width="1374" height="1145" mask={`url(#${id}-body)`} />
     <g className="reader-head"><image href={art} width="1374" height="1145" clipPath={`url(#${id}-head)`} /></g>
-    <g className="reader-mug">
-      <ellipse cx="1184" cy="616" rx="48" ry="12" fill="#493b2d" opacity=".14" />
-      <path d="M1211 553C1259 544 1264 608 1210 596" fill="none" stroke="#493d31" strokeWidth="5" />
-      <path d="M1145 545Q1180 531 1215 545L1210 607Q1180 625 1150 607Z" fill="#f1e5d0" stroke="#493d31" strokeWidth="4" />
-      <ellipse cx="1180" cy="545" rx="35" ry="12" fill="#e9ddc7" stroke="#493d31" strokeWidth="3" />
-      <ellipse cx="1180" cy="546" rx="28" ry="7" fill="#819967" />
-      <path d="M1164 544Q1178 540 1191 544" fill="none" stroke="#c7d5ae" strokeWidth="2" />
-      <g fill="none" stroke="#827663" strokeWidth="3.5" strokeLinecap="round">
-        <path className="reader-steam reader-steam-one" d="M1165 523C1145 505 1185 487 1168 465" />
-        <path className="reader-steam reader-steam-two" d="M1197 523C1213 503 1178 492 1197 472" />
-      </g>
-    </g>
+
 
     <g className="reader-inside-pages">
       <path d="M661 252L881 140L851 463L650 522Z" fill="#d1c3aa" stroke="#82725d" strokeWidth="2" />
