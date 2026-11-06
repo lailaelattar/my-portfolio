@@ -10,7 +10,7 @@ Toronto, ON, Canada | June 2026 – Present
 
 - Built a utility-activation dashboard with Cursor/Codex to prioritize homes by freeze risk and assign clear owners; helped the team reduce open cases 39% (5,808 to 3,527) in 10 days.
 - Automated daily triage of 300+ utility-support requests using Gumloop, Slack MCP, and urgency rules; gave operators a prioritized queue of emergencies, untouched requests, and open cases for follow-up.
-- Led a provider directory from discovery to launch by completing activations myself, researching Slack/Gmail records, and defining database and front-end requirements with engineering; centralized setup instructions and contact methods so operators could access them without repeating provider research.
+- Led a provider directory from discovery to launch, bridging engineering and product design by translating Slack/Gmail research into database requirements and front-end workflows; centralized setup instructions and contact methods so operators could find provider information without repeating research.
 - Created and shared reusable Cursor/Codex skills for application forms and check formatting, cutting form-filling time ~93%, from ~15 minutes manually to ~1 minute with an agent.
 
 ### Customer Experience (CX) Analyst
