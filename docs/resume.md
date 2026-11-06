@@ -10,7 +10,7 @@ Toronto, ON, Canada | June 2026 – Present
 
 - Built and iterated on a utility-activation dashboard with Cursor/Codex, prioritizing ~1,590 homes by freeze risk; helped the team cut open cases 39% (5,808 to 3,527) in 10 days.
 - Shipped a daily “catch net” with Gumloop and Slack MCP to triage 300+ utility-support requests/day, surfacing emergencies, untouched requests, and open cases so the team could prioritize urgent action.
-- Led a utility-provider directory from firsthand service-activation research to launch with engineering; defined database and front-end requirements, giving the team provider-specific setup instructions within its shared case platform.
+- Led a utility-provider directory from discovery to launch: personally completed service activations to uncover pain points, researched provider processes, and defined database and front-end requirements with engineering so operators could find setup instructions and contact methods in one place.
 - Created and shared reusable Cursor/Codex skills for application forms and check formatting, cutting form-filling time ~93%, from ~15 minutes manually to ~1 minute with an agent.
 
 ### Customer Experience (CX) Analyst
@@ -25,8 +25,14 @@ Toronto, ON, Canada | January 2025 – August 2025
 IO Industries (Electronics Manufacturer)
 London, ON, Canada | May 2024 – December 2024
 
-- Built and shipped a React/Node.js lens compatibility calculator to help customers choose compatible lenses, addressing a frustration cited in 30%+ of support inquiries; used by hundreds of customers each month.
-- Delivered responsive, mobile-first calculator interfaces and REST API integrations with product and engineering; implemented validation, asynchronous state handling, and unit tests to support reliable camera-and-lens selection.
+- Enabled self-service lens selection by shipping a React/Node.js lens compatibility calculator used by hundreds of customers monthly; addressed a recurring compatibility problem cited in 30%+ of support inquiries.
+- Made the calculator usable on mobile and desktop through responsive interfaces and REST APIs; added input validation, asynchronous state handling, and unit tests to support reliable results.
+
+### Reporter Intern
+The Peninsula Qatar (English-language Daily Newspaper)
+Doha, Qatar | May 2023 – July 2023
+
+- Researched culture and society stories through interviews and reporting; turned findings into published news features, making complex topics accessible to a general audience.
 
 Live calculator: https://www.ioindustries.com/calculator/cameras
 
@@ -44,8 +50,8 @@ Western University, London, ON
 ## Skills
 
 - **Product Thinking:** Problem discovery, customer research, risk-based prioritization, success criteria, iterative delivery
-- **Communication & Stakeholder Management:** Journalism-trained interviewing and writing; partner coordination and technical/executive communication
-- **Organization & Delivery:** End-to-end ownership, cross-functional execution, process design, team onboarding
+- **Communication & Stakeholder Management:** Interviewing, research synthesis, writing, cross-functional coordination
+- **AI-Assisted Building:** AI-assisted research, rapid prototyping, operational tools, reusable agent workflows
 
 ## Technical Skills
 
