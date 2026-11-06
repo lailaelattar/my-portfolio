@@ -1,6 +1,6 @@
 "use client"
 
-const labels = ["Designer", "Builder", "Software developer", "Writer", "Interviewer", "Matcha enthusiast", "Lego builder", "Hiker"]
+const labels = ["Designer", "Builder", "Software developer", "Writer", "Interviewer", "Matcha drinker", "Lego lover", "Hiker"]
 
 export default function PersonalityTicker() {
   return (
