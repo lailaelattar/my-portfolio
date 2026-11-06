@@ -8,27 +8,25 @@ Toronto, Canada
 Opendoor (Real Estate Tech)
 Toronto, ON, Canada | June 2026 – Present
 
-- Built a dashboard to get electricity and gas turned on at ~1,590 company-owned homes before winter, prioritizing homes at risk of frozen pipes; the team reduced open requests from 5,808 to 3,527 in 10 days.
-- Shipped a daily Gumloop/Claude “catch net” that posts a prioritized summary from a Slack channel receiving 300+ utility-support requests/day: emergencies (leaks or imminent inspections/closings), untouched requests, and cases in progress.
-- Led a utility-provider directory from research to launch with engineering, testing service activation and analyzing Slack/Gmail records to define database fields and front-end requirements; embedded provider-specific setup instructions in the shared case platform.
-- Created and shared reusable Cursor/Codex skills for application forms and check formatting, reducing form-filling time from ~15 minutes manually to ~1 minute with an agent.
-- Built Python/Snowflake checks to flag contract issues before they delayed renovations, partnering with engineering and operations to define risks and resolve edge cases.
+- Built and iterated on a utility-activation dashboard with Cursor/Codex, prioritizing ~1,590 homes by freeze risk; helped the team cut open cases 39% (5,808 to 3,527) in 10 days.
+- Shipped a daily Gumloop/Claude “catch net” to triage 300+ utility-support requests/day, defining urgency rules from Slack history so leaks and imminent inspections/closings surfaced ahead of routine and untouched requests.
+- Led a utility-provider directory from firsthand service-activation research to launch with engineering; defined database and front-end requirements, giving the team provider-specific setup instructions within its shared case platform.
+- Created and shared reusable Cursor/Codex skills for application forms and check formatting, cutting form-filling time ~93%, from ~15 minutes manually to ~1 minute with an agent.
 
 ### Customer Experience (CX) Analyst
 Hydro One (Ontario’s Largest Electricity Provider)
 Toronto, ON, Canada | January 2025 – August 2025
 
-- Categorized customer-support issues by keyword in Excel pivot tables; presented annotated charts to identify recurring friction and inform myEnergy Rewards website and FAQ updates.
-- Refined surveys with Research & Insights; analyzed satisfaction, enrollment motivations, and notification feedback, visualizing findings to guide communications and improve the customer experience.
-- Tracked weekly enrollment and campaign performance with Marketing; compared participation, opt-outs, and electricity savings across seasons to inform program decisions for 30,000+ enrolled customers.
+- Identified recurring customer friction by categorizing support communications in Excel pivot tables; presented annotated charts to inform myEnergy Rewards website and FAQ updates addressing common questions.
+- Refined surveys with Research & Insights and visualized satisfaction, enrollment motivations, and notification feedback, giving the team customer evidence to guide communications and program improvements.
+- Equipped Marketing with weekly enrollment and campaign-performance charts; compared participation, opt-outs, and electricity savings across seasons to inform recruitment and event decisions for 30,000+ enrolled customers.
 
 ### Software Engineer Intern
 IO Industries (Electronics Manufacturer)
 London, ON, Canada | May 2024 – December 2024
 
-- Built a live React/Node.js lens compatibility calculator addressing a frustration cited in 30%+ of support inquiries; used by hundreds of customers each month.
-- Developed responsive, mobile-first interfaces and integrated REST APIs, implementing validation, asynchronous state handling, and unit tests for reliability.
-- Collaborated with product and engineering in Agile sprints, maintaining clear documentation and translating customer needs into working features.
+- Built and shipped a React/Node.js lens compatibility calculator to help customers choose compatible lenses, addressing a frustration cited in 30%+ of support inquiries; used by hundreds of customers each month.
+- Delivered responsive, mobile-first calculator interfaces and REST API integrations with product and engineering; implemented validation, asynchronous state handling, and unit tests to support reliable camera-and-lens selection.
 
 Live calculator: https://www.ioindustries.com/calculator/cameras
 
