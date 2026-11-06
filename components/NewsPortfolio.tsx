@@ -3,7 +3,7 @@
 import { useEffect, useId, useMemo, useRef, useState, useSyncExternalStore, type MouseEvent } from "react"
 import Image from "next/image"
 import PersonalityTicker from "./PersonalityTicker"
-import { ArrowUpRight, FileText, Laptop, Mail, Search, X, Zap } from "lucide-react"
+import { ArrowUpRight, FileText, Laptop, Mail, Zap } from "lucide-react"
 import { sections, stories, type SectionId, type Story } from "./news-data"
 
 function OrganizationLogo({ story }: { story: Story }) {
@@ -36,35 +36,27 @@ function subscribe(listener: () => void) {
 
 function topicFor(story: Story, section: SectionId) {
   if (section === "experience") return story.experienceType ?? story.category
-  if (section === "writing" || section === "contact") return story.source
+  if (section === "contact") return story.source
   return story.category
 }
 
 export default function NewsPortfolio({ onReturnToIntro }: { onReturnToIntro?: () => void }) {
   const section = useSyncExternalStore(subscribe, readSection, () => "about-me" as SectionId)
-  const [search, setSearch] = useState({ section, query: "" })
-  const [searchOpen, setSearchOpen] = useState(false)
   const [position, setPosition] = useState({ section, topic: "", storyId: "" })
   const articleRef = useRef<HTMLElement>(null)
   const workspaceRef = useRef<HTMLDivElement>(null)
   const listRef = useRef<HTMLElement>(null)
-  const searchRef = useRef<HTMLInputElement>(null)
   const current = sections.find(item => item.id === section)!
-  const query = search.section === section ? search.query : ""
   const groups = useMemo(() => {
     const result: { topic: string; entries: Story[] }[] = []
-    const term = query.trim().toLowerCase()
     for (const story of stories[section]) {
-      const text = [story.title, story.role, story.source, story.summary, story.date, story.experienceType, ...story.paragraphs, ...story.tags ?? [], ...story.caseStudy?.map(part => `${part.heading} ${part.text}`) ?? []].join(" ").toLowerCase()
-      if (term && !text.includes(term)) continue
       const topic = topicFor(story, section)
       let group = result.find(item => item.topic === topic)
       if (!group) { group = { topic, entries: [] }; result.push(group) }
       group.entries.push(story)
     }
     return result
-  }, [section, query])
-  const count = groups.reduce((total, group) => total + group.entries.length, 0)
+  }, [section])
   const activeTopic = position.section === section && groups.some(group => group.topic === position.topic) ? position.topic : groups[0]?.topic
   const activeStory = position.section === section && groups.some(group => group.entries.some(story => story.id === position.storyId)) ? position.storyId : groups[0]?.entries[0]?.id
 
@@ -93,7 +85,6 @@ export default function NewsPortfolio({ onReturnToIntro }: { onReturnToIntro?: (
       window.history.pushState(null, "", `#${id}`)
       window.dispatchEvent(new HashChangeEvent("hashchange"))
     }
-    setSearch({ section: id, query: "" })
     requestAnimationFrame(() => {
       workspaceRef.current?.scrollTo({ top: 0, behavior: "instant" })
       listRef.current?.scrollTo({ top: 0, left: 0, behavior: "instant" })
@@ -152,9 +143,6 @@ export default function NewsPortfolio({ onReturnToIntro }: { onReturnToIntro?: (
           <a href="#about-me" className="news-name" onClick={event => { event.preventDefault(); navigate("about-me") }}>Laila El Attar</a>
           <div className="news-header-actions">
             <a className="news-header-link" href="/Laila El attar Resume.pdf" target="_blank" rel="noopener noreferrer"><FileText size={14} aria-hidden="true" />Résumé <ArrowUpRight size={12} aria-hidden="true" /></a>
-            <button type="button" className="news-search-toggle" aria-expanded={searchOpen} aria-label={searchOpen ? "Close search" : "Search this section"} onClick={() => { setSearchOpen(!searchOpen); if (searchOpen) setSearch({ section, query: "" }); else requestAnimationFrame(() => searchRef.current?.focus()) }}>
-              {searchOpen ? <X size={18} /> : <Search size={18} />}
-            </button>
           </div>
         </header>
         <PersonalityTicker />
@@ -163,7 +151,6 @@ export default function NewsPortfolio({ onReturnToIntro }: { onReturnToIntro?: (
             {sections.map(item => <a href={`#${item.id}`} key={item.id} aria-current={item.id === section ? "page" : undefined} onClick={event => { event.preventDefault(); navigate(item.id) }}>{item.label}<span aria-hidden="true">·</span></a>)}
           </div>
         </nav>
-        {searchOpen && <form className="news-search" role="search" onSubmit={event => event.preventDefault()}><label htmlFor="portfolio-search">Search {current.label.toLowerCase()}</label><input ref={searchRef} id="portfolio-search" type="search" value={query} placeholder="Title, topic, or organization…" onChange={event => setSearch({ section, query: event.target.value })} /><span aria-live="polite">{count} results</span></form>}
         <div ref={workspaceRef} className="news-workspace">
           <aside className="news-topics" aria-label="Subsections">
             <p className="news-small-label">Browse</p>
@@ -192,7 +179,7 @@ export default function NewsPortfolio({ onReturnToIntro }: { onReturnToIntro?: (
                     <div className="news-entry-copy">
                       {story.icon && <div className={story.icon === "electricity" ? "news-entry-symbol" : "news-contact-badge"}><ContactIcon kind={story.icon} /></div>}
                       {story.logo && <div className={`news-article-logo${section === "certifications" ? " news-issuer-logo" : ""}`}><OrganizationLogo story={story} /></div>}
-                      {story.id !== "profile" && story.image && !story.experienceType && !(section === "writing" && story.logo) && <figure className="news-hero-image"><Image src={story.image} alt={story.imageAlt ?? story.source} fill sizes="(max-width: 760px) 100vw, 65vw" /></figure>}
+                      {story.id !== "profile" && story.image && !story.experienceType && <figure className="news-hero-image"><Image src={story.image} alt={story.imageAlt ?? story.source} fill sizes="(max-width: 760px) 100vw, 65vw" /></figure>}
                       <div className="news-story-meta"><span>{story.experienceType ?? story.category}</span><span>{story.source}</span></div>
                       <h2 className="news-entry-title">{story.role ?? story.title}</h2>
                       {story.date && <p className="news-dateline">{story.date}</p>}
@@ -211,7 +198,7 @@ export default function NewsPortfolio({ onReturnToIntro }: { onReturnToIntro?: (
                     </div>
                   </div>
                 </section>)}
-              </section>) : <div className="news-empty"><h2>No matches found.</h2><p>Try another title, topic, or organization.</p><button type="button" onClick={() => { setSearch({ section, query: "" }); searchRef.current?.focus() }}>Clear search</button></div>}
+              </section>) : <div className="news-empty"><h2>No entries yet.</h2></div>}
             </div>
           </article>
         </div>

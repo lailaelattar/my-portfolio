@@ -25,9 +25,15 @@ export default function ReaderIntro() {
   const journey = useRef<HTMLDivElement>(null)
   const stage = useRef<HTMLDivElement>(null)
   const enteredRef = useRef(false)
+  const returningRef = useRef(false)
+  const requestUpdateRef = useRef<() => void>(() => {})
 
   const returnToReader = useCallback(() => {
+    returningRef.current = true
+    enteredRef.current = false
+    setEntered(false)
     window.scrollTo({ top: journey.current?.offsetTop ?? 0, behavior: reduced ? "instant" : "smooth" })
+    requestUpdateRef.current()
     requestAnimationFrame(() => journey.current?.focus({ preventScroll: true }))
   }, [reduced])
 
@@ -43,7 +49,8 @@ export default function ReaderIntro() {
       const width = window.innerWidth
       const height = window.innerHeight
       const range = Math.max(host.offsetHeight - height, 0)
-      const target = reduced || range === 0 ? 1 : clamp((window.scrollY - host.offsetTop) / range)
+      // Keep the newspaper open until the explicit return button releases it.
+      const target = reduced || range === 0 || enteredRef.current ? 1 : clamp((window.scrollY - host.offsetTop) / range)
       const elapsed = Math.min(Math.max(now - lastFrame, 1), 64)
       lastFrame = now
       if (visualProgress === undefined || reduced || immediate) visualProgress = target
@@ -73,7 +80,8 @@ export default function ReaderIntro() {
       host.style.setProperty("--reader-page-turn-opacity", String(1 - smooth(clamp(progress / .12))))
       host.dataset.moving = String(progress > .01)
       host.dataset.progress = progress.toFixed(3)
-      const nextEntered = progress >= .98
+      if (returningRef.current && progress <= .001) returningRef.current = false
+      const nextEntered = !returningRef.current && (enteredRef.current || progress >= .98)
       if (nextEntered !== enteredRef.current) {
         enteredRef.current = nextEntered
         setEntered(nextEntered)
@@ -81,6 +89,7 @@ export default function ReaderIntro() {
       if (visualProgress !== target) frame = requestAnimationFrame(update)
     }
     const requestUpdate = () => { if (!frame) frame = requestAnimationFrame(update) }
+    requestUpdateRef.current = requestUpdate
     const validDeepLink = sections.some(section => window.location.hash === `#${section.id}`)
     if (reduced || validDeepLink || new URLSearchParams(window.location.search).get("intro") === "skip") {
       immediate = true
@@ -97,24 +106,12 @@ export default function ReaderIntro() {
     window.addEventListener("hashchange", onHashChange)
     window.addEventListener("scroll", requestUpdate, { passive: true })
     window.addEventListener("resize", requestUpdate, { passive: true })
-    // At a column's top, an upward wheel gesture returns to the scroll scene.
-    const onWheel = (event: WheelEvent) => {
-      if (reduced || !enteredRef.current || event.deltaY >= 0 || Math.abs(event.deltaY) <= Math.abs(event.deltaX) || event.ctrlKey || !event.cancelable) return
-      const target = event.target instanceof Element ? event.target : null
-      const column = target?.closest<HTMLElement>(window.matchMedia("(max-width: 760px)").matches ? ".news-workspace" : ".news-article, .news-story-list, .news-topics")
-      if (column && column.scrollTop <= 1) {
-        event.preventDefault()
-        const distance = event.deltaY * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? window.innerHeight : 1)
-        window.scrollBy({ top: distance, behavior: "instant" })
-      }
-    }
-    window.addEventListener("wheel", onWheel, { passive: false })
     return () => {
       cancelAnimationFrame(frame)
       window.removeEventListener("hashchange", onHashChange)
       window.removeEventListener("scroll", requestUpdate)
       window.removeEventListener("resize", requestUpdate)
-      window.removeEventListener("wheel", onWheel)
+      requestUpdateRef.current = () => {}
     }
   }, [ready, reduced])
 
