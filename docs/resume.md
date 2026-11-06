@@ -9,7 +9,7 @@ Opendoor (Real Estate Tech)
 Toronto, ON, Canada | June 2026 – Present
 
 - Built and iterated on a utility-activation dashboard with Cursor/Codex, prioritizing ~1,590 homes by freeze risk; helped the team cut open cases 39% (5,808 to 3,527) in 10 days.
-- Shipped a daily Gumloop/Claude “catch net” to triage 300+ utility-support requests/day, defining urgency rules from Slack history so leaks and imminent inspections/closings surfaced ahead of routine and untouched requests.
+- Shipped a daily “catch net” with Gumloop and Slack MCP to triage 300+ utility-support requests/day, surfacing emergencies, untouched requests, and open cases so the team could prioritize urgent action.
 - Led a utility-provider directory from firsthand service-activation research to launch with engineering; defined database and front-end requirements, giving the team provider-specific setup instructions within its shared case platform.
 - Created and shared reusable Cursor/Codex skills for application forms and check formatting, cutting form-filling time ~93%, from ~15 minutes manually to ~1 minute with an agent.
 
