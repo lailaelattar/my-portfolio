@@ -18,9 +18,9 @@ Toronto, ON, Canada | June 2026 – Present
 Hydro One (Ontario’s Largest Electricity Provider)
 Toronto, ON, Canada | January 2025 – August 2025
 
-- Owned root-cause research for myEnergy Rewards, a program with 30,000+ enrolled customers, synthesizing survey data and support transcripts into actionable findings.
-- Identified enrollment friction, built the data case, proposed a fix, and owned it through implementation, reducing support escalations.
-- Built Power BI and Excel dashboards tracking engagement, opt-outs, and kilowatt savings; translated findings for operations teams and executive stakeholders.
+- Categorized customer-support issues by keyword in Excel pivot tables; presented annotated charts to identify recurring friction and inform myEnergy Rewards website and FAQ updates.
+- Refined surveys with Research & Insights; analyzed satisfaction, enrollment motivations, and notification feedback, visualizing findings to guide communications and improve the customer experience.
+- Tracked weekly enrollment and campaign performance with Marketing; compared participation, opt-outs, and electricity savings across seasons to inform program decisions for 30,000+ enrolled customers.
 
 ### Software Engineer Intern
 IO Industries (Electronics Manufacturer)
