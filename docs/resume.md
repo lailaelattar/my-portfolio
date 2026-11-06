@@ -1,6 +1,6 @@
 # Laila El Attar
 laylaattar@live.com | linkedin.com/in/laila-el-attar | lailaelattar.com
-Toronto, Canada (Citizen) & Doha, Qatar (Family Residency Visa)
+Toronto, Canada
 
 ## Professional Experience
 
@@ -8,11 +8,11 @@ Toronto, Canada (Citizen) & Doha, Qatar (Family Residency Visa)
 Opendoor (Real Estate Tech)
 Toronto, ON, Canada | June 2026 – Present
 
-- Built and piloted a winter utilities dashboard for ~1,590 homes, setting four freeze-risk tiers and provider-based ownership; program open cases fell from 5,808 to 3,527 (Sept. 22–Oct. 2).
-- Shipped a daily Gumloop/Claude agent that prioritizes emergency, unattended, and in-progress utility requests; defined and refined escalation criteria through support-channel analysis and error reviews.
-- Corrected a live-status synchronization defect that made dashboard completions drop on refresh; made live operational status take precedence over stale warehouse snapshots.
-- Authored operating guides and reusable Cursor/Codex skills defining completion criteria, system-of-record rules, and partner-provider exceptions; led utilities-team Cursor onboarding.
-- Built Python/Snowflake contract-risk detection and a Parallel AI/SQL utility-provider dataset, partnering with engineering and operations to resolve edge cases.
+- Built a dashboard to get electricity and gas turned on at ~1,590 company-owned homes before winter, prioritizing homes at risk of frozen pipes; the team reduced open requests from 5,808 to 3,527 in 10 days.
+- Shipped a daily Gumloop/Claude “catch net” that posts a prioritized summary from a Slack channel receiving 300+ utility-support requests/day: emergencies (leaks or imminent inspections/closings), untouched requests, and cases in progress.
+- Led a utility-provider directory from research to launch with engineering, testing service activation and analyzing Slack/Gmail records to define database fields and front-end requirements; embedded provider-specific setup instructions in the shared case platform.
+- Created and shared reusable Cursor/Codex skills for application forms and check formatting, reducing form-filling time from ~15 minutes manually to ~1 minute with an agent.
+- Built Python/Snowflake checks to flag contract issues before they delayed renovations, partnering with engineering and operations to define risks and resolve edge cases.
 
 ### Customer Experience (CX) Analyst
 Hydro One (Ontario’s Largest Electricity Provider)
