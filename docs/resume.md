@@ -10,7 +10,7 @@ Toronto, ON, Canada | June 2026 – Present
 
 - Built a utility-activation dashboard with Cursor/Codex to prioritize homes by freeze risk and assign clear owners; helped the team reduce open cases 39% (5,808 to 3,527) in 10 days.
 - Automated daily triage of 300+ utility-support requests using Gumloop, Slack MCP, and urgency rules; gave operators a prioritized queue of emergencies, untouched requests, and open cases for follow-up.
-- Led a provider directory from discovery to launch, bridging engineering and product design by translating Slack/Gmail research into database requirements and front-end workflows; centralized setup instructions and contact methods so operators could find provider information without repeating research.
+- Led a provider directory from discovery to launch, using AI-assisted research and prototyping to bridge engineering and product design; translated findings into database requirements and front-end workflows, centralizing provider instructions and contact methods for operators.
 - Created and shared reusable Cursor/Codex skills for application forms and check formatting, cutting form-filling time ~93%, from ~15 minutes manually to ~1 minute with an agent.
 
 ### Customer Experience (CX) Analyst
@@ -44,7 +44,6 @@ Western University, London, ON
 - GPA: 3.7/4.0; Dean’s Honour List ×4
 - Relevant Courses: Research Methods for the Digital Age, Software Project Management, Databases I, Unstructured Data, Advanced Web Design & Content
 
-**Certifications**
 **Pendo:** [Becoming an AI-native Product Manager (2026)](https://www.pendo.io/learninglab/certificates/cmvbmc2mz00122ylopk0rwmi8/)
 **Google:** [Foundations](https://www.coursera.org/account/accomplishments/verify/24ZLCY7S5F3Y); [Empathize, Define & Ideate](https://www.coursera.org/account/accomplishments/verify/TR6478DSGP57); [Wireframes & Low-Fidelity Prototypes](https://www.coursera.org/account/accomplishments/verify/MZ2KYDWYZ1R1)
 **Electricity Canada:** Electricity Fundamentals in Canada (2025)
