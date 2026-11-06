@@ -17,7 +17,7 @@ Toronto, ON, Canada | June 2026 – Present
 Hydro One (Ontario’s Largest Electricity Provider)
 Toronto, ON, Canada | January 2025 – August 2025
 
-- Analyzed customer-support messages using Excel pivot tables and annotated charts to identify recurring pain points; informed website and FAQ improvements that helped reduce myEnergy Rewards support inquiries by nearly 50%.
+- Analyzed myEnergy Rewards support messages using Excel pivot tables and charts; findings informed website and FAQ improvements that helped reduce support inquiries by nearly 50%.
 - Refined surveys with Research & Insights and visualized satisfaction, enrollment motivations, and notification feedback; gave the team customer evidence to guide communications and program decisions.
 - Researched customer segments and charted campaign performance, participation, and opt-outs with Marketing; findings guided targeted recruitment and event planning to balance engagement with energy savings.
 
