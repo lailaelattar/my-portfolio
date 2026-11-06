@@ -8,49 +8,51 @@ Toronto, Canada
 Opendoor (Real Estate Tech)
 Toronto, ON, Canada | June 2026 – Present
 
-- Built and iterated on a utility-activation dashboard with Cursor/Codex, prioritizing ~1,590 homes by freeze risk; helped the team cut open cases 39% (5,808 to 3,527) in 10 days.
-- Shipped a daily “catch net” with Gumloop and Slack MCP to triage 300+ utility-support requests/day, surfacing emergencies, untouched requests, and open cases so the team could prioritize urgent action.
-- Led a utility-provider directory from discovery to launch: personally completed service activations to uncover pain points, researched provider processes, and defined database and front-end requirements with engineering so operators could find setup instructions and contact methods in one place.
+- Built a utility-activation dashboard with Cursor/Codex to prioritize homes by freeze risk and assign clear owners; helped the team reduce open cases 39% (5,808 to 3,527) in 10 days.
+- Automated daily triage of 300+ utility-support requests using Gumloop, Slack MCP, and urgency rules; gave operators a prioritized queue of emergencies, untouched requests, and open cases for follow-up.
+- Led a provider directory from discovery to launch by completing activations myself, researching Slack/Gmail records, and defining database and front-end requirements with engineering; centralized setup instructions and contact methods so operators could access them without repeating provider research.
 - Created and shared reusable Cursor/Codex skills for application forms and check formatting, cutting form-filling time ~93%, from ~15 minutes manually to ~1 minute with an agent.
 
 ### Customer Experience (CX) Analyst
 Hydro One (Ontario’s Largest Electricity Provider)
 Toronto, ON, Canada | January 2025 – August 2025
 
-- Conducted customer research by categorizing support communications in Excel pivot tables; visualized recurring pain points to inform myEnergy Rewards website and FAQ updates for 30,000+ enrolled customers.
-- Refined surveys with Research & Insights; analyzed customer satisfaction, enrollment motivations, and notification feedback to bring customer perspectives into communications and program decisions.
-- Used customer segmentation research to guide targeted recruitment; charted enrollment and campaign performance with Marketing, comparing participation, opt-outs, and energy savings to inform program decisions.
+- Identified recurring customer pain points through support-message analysis in Excel pivot tables and annotated charts; findings informed myEnergy Rewards website and FAQ updates for 30,000+ enrolled customers.
+- Refined surveys with Research & Insights and visualized satisfaction, enrollment motivations, and notification feedback; gave the team customer evidence to guide communications and program decisions.
+- Researched customer segments and charted campaign performance, participation, and opt-outs with Marketing; findings guided targeted recruitment and event planning to balance engagement with energy savings.
 
 ### Software Engineer Intern
 IO Industries (Electronics Manufacturer)
 London, ON, Canada | May 2024 – December 2024
 
-- Enabled self-service lens selection by shipping a React/Node.js lens compatibility calculator used by hundreds of customers monthly; addressed a recurring compatibility problem cited in 30%+ of support inquiries.
-- Made the calculator usable on mobile and desktop through responsive interfaces and REST APIs; added input validation, asynchronous state handling, and unit tests to support reliable results.
+- Built and shipped a React/Node.js lens compatibility calculator for a problem cited in 30%+ of support inquiries; enabled self-service lens selection for hundreds of customers each month.
+- Developed responsive interfaces and REST API integrations with input validation, asynchronous state handling, and unit tests; made the calculator accessible on mobile and desktop with checks for invalid inputs.
 
 ### Reporter Intern
 The Peninsula Qatar (English-language Daily Newspaper)
 Doha, Qatar | May 2023 – July 2023
 
-- Interviewed people firsthand to understand their experiences and perspectives; combined empathetic listening with research to publish culture and society features that made complex topics accessible.
+- Interviewed people firsthand and researched their experiences with empathetic listening; translated findings into published culture and society news features for a general audience.
 
 Live calculator: https://www.ioindustries.com/calculator/cameras
 
 ## Education
 
-**Bachelor of Science – Computer Science** | September 2021 – May 2026
-**Bachelor of Arts – Media and Communication Studies**
+**Bachelor of Arts (Four-Year Program)** | September 2021 – June 2026
+**Double Major: Computer Science; Media, Information & Technoculture**
 Western University, London, ON
 - GPA: 3.7/4.0; Dean’s Honour List ×4
-- Relevant Courses: Data Structures & Algorithms, Unstructured Data, Software Project Management, Web Design & Content Strategy
+- Relevant Courses: Research Methods for the Digital Age, Software Project Management, Databases I, Unstructured Data, Advanced Web Design & Content
 
-**Certifications:** [Pendo Learning Lab — Becoming an AI-native Product Manager (2026)](https://www.pendo.io/learninglab/certificates/cmvbmc2mz00122ylopk0rwmi8/)
-**Google UX course certificates:** [Foundations](https://www.coursera.org/account/accomplishments/verify/24ZLCY7S5F3Y); [Empathize, Define & Ideate](https://www.coursera.org/account/accomplishments/verify/TR6478DSGP57); [Wireframes & Low-Fidelity Prototypes](https://www.coursera.org/account/accomplishments/verify/MZ2KYDWYZ1R1)
+**Certifications**
+**Pendo:** [Becoming an AI-native Product Manager (2026)](https://www.pendo.io/learninglab/certificates/cmvbmc2mz00122ylopk0rwmi8/)
+**Google:** [Foundations](https://www.coursera.org/account/accomplishments/verify/24ZLCY7S5F3Y); [Empathize, Define & Ideate](https://www.coursera.org/account/accomplishments/verify/TR6478DSGP57); [Wireframes & Low-Fidelity Prototypes](https://www.coursera.org/account/accomplishments/verify/MZ2KYDWYZ1R1)
+**Electricity Canada:** Electricity Fundamentals in Canada (2025)
 
 ## Skills
 
-- **Product Thinking:** Customer research, segmentation, customer empathy, problem discovery, prioritization, iterative delivery
-- **Communication & Stakeholder Management:** Interviewing, research synthesis, writing, cross-functional coordination
+- **Product Thinking:** Customer research, segmentation, problem framing, prioritization, iterative delivery
+- **Communication & Stakeholder Management:** Interviewing, research synthesis, writing, stakeholder alignment
 - **AI-Assisted Building:** AI-assisted research, rapid prototyping, operational tools, reusable agent workflows
 
 ## Technical Skills

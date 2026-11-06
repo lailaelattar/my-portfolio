@@ -142,7 +142,7 @@ export default function NewsPortfolio({ onReturnToIntro }: { onReturnToIntro?: (
           {onReturnToIntro ? <button type="button" className="news-edition news-return-intro" onClick={onReturnToIntro}>← Back to the couch</button> : <span className="news-edition">The personal edition</span>}
           <a href="#about-me" className="news-name" onClick={event => { event.preventDefault(); navigate("about-me") }}>Laila El Attar</a>
           <div className="news-header-actions">
-            <a className="news-header-link" href="/Laila El attar Resume.pdf" target="_blank" rel="noopener noreferrer"><FileText size={14} aria-hidden="true" />Résumé <ArrowUpRight size={12} aria-hidden="true" /></a>
+            <a className="news-header-link" href="/Laila_El_Attar_Resume_Final.pdf" target="_blank" rel="noopener noreferrer"><FileText size={14} aria-hidden="true" />Résumé <ArrowUpRight size={12} aria-hidden="true" /></a>
           </div>
         </header>
         <PersonalityTicker />
