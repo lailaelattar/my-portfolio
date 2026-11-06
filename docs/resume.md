@@ -17,9 +17,9 @@ Toronto, ON, Canada | June 2026 – Present
 Hydro One (Ontario’s Largest Electricity Provider)
 Toronto, ON, Canada | January 2025 – August 2025
 
-- Identified recurring customer friction by categorizing support communications in Excel pivot tables; presented annotated charts to inform myEnergy Rewards website and FAQ updates addressing common questions.
-- Refined surveys with Research & Insights and visualized satisfaction, enrollment motivations, and notification feedback, giving the team customer evidence to guide communications and program improvements.
-- Equipped Marketing with weekly enrollment and campaign-performance charts; compared participation, opt-outs, and electricity savings across seasons to inform recruitment and event decisions for 30,000+ enrolled customers.
+- Conducted customer research by categorizing support communications in Excel pivot tables; visualized recurring pain points to inform myEnergy Rewards website and FAQ updates for 30,000+ enrolled customers.
+- Refined surveys with Research & Insights; analyzed customer satisfaction, enrollment motivations, and notification feedback to bring customer perspectives into communications and program decisions.
+- Used customer segmentation research to guide targeted recruitment; charted enrollment and campaign performance with Marketing, comparing participation, opt-outs, and energy savings to inform program decisions.
 
 ### Software Engineer Intern
 IO Industries (Electronics Manufacturer)
@@ -32,7 +32,7 @@ London, ON, Canada | May 2024 – December 2024
 The Peninsula Qatar (English-language Daily Newspaper)
 Doha, Qatar | May 2023 – July 2023
 
-- Researched culture and society stories through interviews and reporting; turned findings into published news features, making complex topics accessible to a general audience.
+- Interviewed people firsthand to understand their experiences and perspectives; combined empathetic listening with research to publish culture and society features that made complex topics accessible.
 
 Live calculator: https://www.ioindustries.com/calculator/cameras
 
@@ -49,7 +49,7 @@ Western University, London, ON
 
 ## Skills
 
-- **Product Thinking:** Problem discovery, customer research, risk-based prioritization, success criteria, iterative delivery
+- **Product Thinking:** Customer research, segmentation, customer empathy, problem discovery, prioritization, iterative delivery
 - **Communication & Stakeholder Management:** Interviewing, research synthesis, writing, cross-functional coordination
 - **AI-Assisted Building:** AI-assisted research, rapid prototyping, operational tools, reusable agent workflows
 
